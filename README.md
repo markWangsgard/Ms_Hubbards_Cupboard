@@ -1,6 +1,11 @@
 # Project Proposal - Ms Hubbard's Cupboard
 
 ## Motives
+I had this idea thinking of poor college students (like me!). Im sure there are plenty of people who want to eat something good, but can't afford, or are too lazy to, run to the store and buy more ingredients.
+
+It would be a site that you can filter recipes based on what you already have in your cupboard. You would be able to add your own recipes, or follow another's. 
+
+You would be able to add/remove items from your pantry (kinda like a shopping list, but opposite! Not what you need, but what you have.)
 
 ## Needed Features
 ### API
@@ -29,6 +34,7 @@
     - Form (what and how much to add)
     - list of ingredients in pantry
         - can remove items from here
+    - Section of possible recipes?
 - Recipe
     - retrieve and display specific recipe
     - start button?
@@ -47,6 +53,7 @@
     - Search bar
     - Filter by serving/difficulty
     - Start with all, but filter as filters/search is applied
+- Nav bar
 
 ## Milestones
 - March 29 (15%)
