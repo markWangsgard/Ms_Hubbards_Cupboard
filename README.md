@@ -14,10 +14,12 @@ You would be able to add/remove items from your pantry (kinda like a shopping li
     - retrieve filtered recipes
         - Possibly connected to user (Continue Making section)
     - create new recipe
+### Local Storage
+- Favorites
+- Continue Making section
 - Store Pantry info
     - Add to pantry
     - Remove from Pantry
-    - Connected with user
 ### Client
 - Pages
     - Home page (explore recipes)
@@ -34,6 +36,7 @@ You would be able to add/remove items from your pantry (kinda like a shopping li
     - Form (what and how much to add)
     - list of ingredients in pantry
         - can remove items from here
+        - drag and drop?
     - Section of possible recipes?
 - Recipe
     - retrieve and display specific recipe
@@ -56,10 +59,10 @@ You would be able to add/remove items from your pantry (kinda like a shopping li
 - Nav bar
 
 ## Milestones
-- March 29 (15%)
-- April 02 (30%)
-- April 05 (40%)
-- April 09 (50%)
-- April 12 (70%)
-- April 16 (80%)
-- April 19 (90%)
+- March 29 (15%) User can see a list of recipe and see details of a recipe
+- April 02 (30%) User can Upload a recipe
+- April 05 (40%) User can search recipes
+- April 09 (50%) User can manage Pantry
+- April 12 (70%) User can filter recipes (difficulty, serving size, etc.)
+- April 16 (80%) User can mark recipe as complete (and ingredients auto remove)
+- April 19 (90%) User can favorite recipes
