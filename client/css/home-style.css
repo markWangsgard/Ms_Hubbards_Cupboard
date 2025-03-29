@@ -52,10 +52,15 @@ input {
     }
   }
 
+  p {
+    margin: 0;
+    margin-top: .3em;
+    margin-bottom: .3em;
+  }
+  
   div {
     display: flex;
     align-items: center;
-
     p {
       margin-left: 0.5em;
     }

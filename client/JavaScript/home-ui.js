@@ -17,6 +17,12 @@ const generateCard = (recipe) => {
     titleElement.textContent = recipe.title;
     const creatorElement = document.createElement("h4");
     creatorElement.textContent = recipe.creator;
+    const durationElement = document.createElement("p");
+
+    const durationHoursString = recipe.duration.hours > 0 ? recipe.duration.hours + (recipe.duration.hours === 1 ? " Hour" : " Hours") : "";
+    const durationMinutesString = recipe.duration.minutes > 0 ? " " + recipe.duration.minutes + (recipe.duration.minutes === 1 ? " Minute" : " Minutes") : "";
+    const durationString = `Time to make: ${durationHoursString}${durationMinutesString}`;
+    durationElement.textContent = durationString;
     const difficultyContainerElement = document.createElement("div");
     for(var i = 0; i < recipe.difficulty; i++)
     {
@@ -76,6 +82,7 @@ const generateCard = (recipe) => {
     cardElement.appendChild(recipeInfoElement);
     recipeInfoElement.appendChild(titleElement);
     recipeInfoElement.appendChild(creatorElement);
+    recipeInfoElement.appendChild(durationElement);
     recipeInfoElement.appendChild(difficultyContainerElement);
     difficultyContainerElement.appendChild(difficultyWordElement);
     recipeInfoElement.appendChild(rateContainerElement);
