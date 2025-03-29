@@ -1,6 +1,7 @@
 :root {
   --header-background-color: #69392b;
   --header-text-color: #f1e2df;
+  --page-background-color: #ffb22c;
 }
 .icon {
   height: 20px;
