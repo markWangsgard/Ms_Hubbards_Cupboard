@@ -62,7 +62,13 @@ const generateCard = (recipe) => {
     const favoriteIconElement = document.createElement("img");
     favoriteIconElement.src = "/images/solid-bookmark.svg";
     favoriteIconElement.alt = "Favorited Recipe";
-    favoriteIconElement.classList = "large-icon";
+    favoriteIconElement.classList = "large-icon favorite-icon";
+    const favoriteButtonElement = document.createElement("button");
+    favoriteButtonElement.textContent = "Favorite"
+    favoriteButtonElement.classList = "button-favorited";
+    // for when recipe isn't favorite
+    // favoriteButtonElement.classList = "button-not-favorited";
+
 
     cardElement.appendChild(recipeIconElement);
     recipeIconElement.appendChild(imageElement);
@@ -75,6 +81,7 @@ const generateCard = (recipe) => {
     recipeInfoElement.appendChild(rateContainerElement);
     rateContainerElement.appendChild(ratingNumberElement);
     cardElement.appendChild(favoriteIconElement);
+    cardElement.appendChild(favoriteButtonElement);
 
   return cardElement;
 };
@@ -93,7 +100,7 @@ const newRecipe = {
 }
 
 // console.log(generateCard(newRecipe));
-const allRecipesContainerElement = document.getElementById("all-recipes-section");
+const allRecipesContainerElement = document.getElementById("all-recipes-container");
 
 const allRecipes = await getAllRecipes();
 allRecipes.forEach(recipe => {

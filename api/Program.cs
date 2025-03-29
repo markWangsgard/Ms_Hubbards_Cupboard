@@ -11,10 +11,11 @@ app.UseCors(x => x.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
 
 string fileName = "recipes.json";
 List<Recipe> recipeDatabase = new();
-Recipe newRecipe = new Recipe(1, "Hello", "Mark", "/images/pancakes.jpg", 3, RecipeDifficulty.Easy, 4.5, new List<Ingredient>(), new List<string>());
-Recipe newRecipe2 = new Recipe(1, "boo", "Mark", "/images/pancakes.jpg", 3, RecipeDifficulty.Easy, 3.5, new List<Ingredient>(), new List<string>());
-recipeDatabase.Add(newRecipe);
-recipeDatabase.Add(newRecipe2);
+for (int i = 0; i < 20; i++)
+{
+    Recipe newRecipe = new Recipe(1, "Hello", "Mark", "/images/pancakes.jpg", 3, RecipeDifficulty.Easy, 4.5, new List<Ingredient>(), new List<string>());
+    recipeDatabase.Add(newRecipe);
+}
 if (File.Exists(fileName))
 {
     var json = File.ReadAllText(fileName);
@@ -23,7 +24,7 @@ if (File.Exists(fileName))
 
 app.MapGet("/", () => "Hello World!");
 
-app.MapGet("/recipes", () => recipeDatabase.Select((recipe) => 
+app.MapGet("/recipes", () => recipeDatabase.Select((recipe) =>
 {
     return new RecipeWithDifficultyInInt(
     recipe.Id,
@@ -34,7 +35,7 @@ app.MapGet("/recipes", () => recipeDatabase.Select((recipe) =>
     (int)recipe.Difficulty,
     recipe.Rating,
     recipe.Ingredients,
-    recipe.Directions    
+    recipe.Directions
     );
 }));
 app.MapGet("/recipes/search", ([FromQuery] string title) =>
@@ -57,16 +58,16 @@ public record Recipe
     List<Ingredient> Ingredients,
     List<string> Directions);
 
-    public record RecipeWithDifficultyInInt
+public record RecipeWithDifficultyInInt
 (
-    int Id,
-    string Title,
-    string Creator,
-    string PhotoURL,
-    int ServingSize,
-    int Difficulty,
-    double Rating,
-    List<Ingredient> Ingredients,
-    List<string> Directions);
+int Id,
+string Title,
+string Creator,
+string PhotoURL,
+int ServingSize,
+int Difficulty,
+double Rating,
+List<Ingredient> Ingredients,
+List<string> Directions);
 public enum RecipeDifficulty { Easy = 1, Standard = 2, Medium = 3, Intermediate = 4, Hard = 5 }
 public record Ingredient(string Name, float Quantity, string Unit);
