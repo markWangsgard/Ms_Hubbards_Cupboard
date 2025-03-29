@@ -1,19 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/recipe-style.css">
-    <link rel="stylesheet" href="/css/header-footer-style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/recipe-style.css" />
+    <link rel="stylesheet" href="/css/header-footer-style.css" />
     <script type="module" src="/JavaScript/pantry-ui.js"></script>
     <script type="module" src="/JavaScript/header.js"></script>
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <header id="header"></header>
-    <h2>Pancakes</h2>
-    <img src="/images/pancakes.jpg" alt="pancakes" style="height: 100px;">
-    <h3>Mark Wangsgard</h3>
-    
-</body>
+    <main>
+      <section id="recipe-main-info-container">
+        <img id="recipe-photo" src="/images/pancakes.jpg" alt="pancakes" />
+        <article>
+          <h2>Pancakes</h2>
+          <h3>Mark Wangsgard</h3>
+          <div>
+            <h3>Time to make: 12 min</h3>
+            <h3>Serving Size: 3</h3>
+          </div>
+          <div>
+            <img src="/images/chef-hat-solid.svg" alt="" class="large-icon" />
+            <img src="/images/chef-hat-solid.svg" alt="" class="large-icon" />
+            <img src="/images/chef-hat-solid.svg" alt="" class="large-icon" />
+            <img src="/images/chef-hat-solid.svg" alt="" class="large-icon" />
+            <img src="/images/chef-hat-solid.svg" alt="" class="large-icon" />
+            <p>Hard</p>
+          </div>
+          <div>
+            <img src="/images/yellow-star.svg" alt="" class="large-icon" />
+            <img src="/images/yellow-star.svg" alt="" class="large-icon" />
+            <img src="/images/yellow-star.svg" alt="" class="large-icon" />
+            <img src="/images/yellow-star.svg" alt="" class="large-icon" />
+            <img src="/images/yellow-star.svg" alt="" class="large-icon" />
+            <p>5</p>
+          </div>
+        </article>
+      </section>
+      <section id="ingredients-directions-container">
+        <article id="ingredients">
+          <h2>Ingredients</h2>
+          <ul>
+            <li>Cheese</li>
+            <li>Milk</li>
+            <li>Apples</li>
+          </ul>
+        </article>
+        <article id="directions">
+          <h2>Directions</h2>
+          <ol>
+            <li>Cheese</li>
+            <li>Milk</li>
+            <li>Apples</li>
+          </ol>
+        </article>
+      </section>
+    </main>
+  </body>
 </html>
