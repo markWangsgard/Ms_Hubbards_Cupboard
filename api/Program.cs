@@ -11,9 +11,11 @@ app.UseCors(x => x.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
 
 string fileName = "recipes.json";
 List<Recipe> recipeDatabase = new();
+Ingredient ingredient=new("Shredded Cheese", 1, "Cup");
+
 for (int i = 0; i < 20; i++)
 {
-    Recipe newRecipe = new Recipe(1, "Hello", "Mark", "/images/pancakes.jpg", 3, new TimeToMake(1, 30), RecipeDifficulty.Easy, 4.5, new List<Ingredient>(), new List<string>());
+    Recipe newRecipe = new Recipe(i, "Hello", "Mark", "/images/pancakes.jpg", 3, new TimeToMake(1, 30), RecipeDifficulty.Easy, 4.5, new List<Ingredient>([ingredient, ingredient, ingredient]), new List<string>(["Step 1", "Step 2", "Step 3"]));
     recipeDatabase.Add(newRecipe);
 }
 if (File.Exists(fileName))
@@ -22,9 +24,9 @@ if (File.Exists(fileName))
     recipeDatabase.AddRange(JsonSerializer.Deserialize<List<Recipe>>(json));
 }
 
-app.MapGet("/", () => "Hello World!");
-
-app.MapGet("/recipes", () => recipeDatabase.Select((recipe) =>
+List<RecipeWithDifficultyInInt> convertDifficulty()
+{
+    return recipeDatabase.Select((recipe) =>
 {
     return new RecipeWithDifficultyInInt(
     recipe.Id,
@@ -33,15 +35,25 @@ app.MapGet("/recipes", () => recipeDatabase.Select((recipe) =>
     recipe.PhotoURL,
     recipe.ServingSize,
     recipe.Duration,
+    recipe.Difficulty.ToString(),
     (int)recipe.Difficulty,
     recipe.Rating,
     recipe.Ingredients,
     recipe.Directions
     );
-}));
+}).ToList();
+}
+
+app.MapGet("/", () => "Hello World!");
+
+app.MapGet("/recipes", () => convertDifficulty());
 app.MapGet("/recipes/search", ([FromQuery] string title) =>
 {
     return recipeDatabase.Where(r => r.Title.ToLower().Contains(title)).ToList();
+});
+app.MapGet("/recipes/{id}", (int id) =>
+{
+    return convertDifficulty().Find((recipe) => recipe.Id == id);
 });
 
 app.Run();
@@ -67,7 +79,8 @@ string Title,
 string Creator,
 string PhotoURL,
 int ServingSize,
-    TimeToMake Duration,
+TimeToMake Duration,
+string DifficultyRating,
 int Difficulty,
 double Rating,
 List<Ingredient> Ingredients,

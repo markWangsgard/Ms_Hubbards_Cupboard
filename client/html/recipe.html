@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/recipe-style.css" />
     <link rel="stylesheet" href="/css/header-footer-style.css" />
-    <script type="module" src="/JavaScript/pantry-ui.js"></script>
+    <script type="module" src="/JavaScript/recipe-ui.js"></script>
     <script type="module" src="/JavaScript/header.js"></script>
     <title>Document</title>
   </head>
@@ -16,13 +16,13 @@
         <article id="recipe-photo">
         </article>
         <article id="recipe-info">
-          <h2>Pancakes</h2>
-          <h3>Mark Wangsgard</h3>
+          <h2 id="title">Pancakes</h2>
+          <h3 id="creator">Mark Wangsgard</h3>
           <div>
-            <h3>Time to make: 12 min</h3>
-            <h3>Serving Size: 3</h3>
+            <h3 id="duration">Time to make: 12 min</h3>
+            <h3 id="serving-size">Serving Size: 3</h3>
           </div>
-          <div>
+          <div id="difficulty">
             <img src="/images/chef-hat-solid.svg" alt="" class="large-icon" />
             <img src="/images/chef-hat-solid.svg" alt="" class="large-icon" />
             <img src="/images/chef-hat-solid.svg" alt="" class="large-icon" />
@@ -30,7 +30,7 @@
             <img src="/images/chef-hat-solid.svg" alt="" class="large-icon" />
             <p>Hard</p>
           </div>
-          <div>
+          <div id="rate">
             <img src="/images/yellow-star.svg" alt="" class="large-icon" />
             <img src="/images/yellow-star.svg" alt="" class="large-icon" />
             <img src="/images/yellow-star.svg" alt="" class="large-icon" />
@@ -43,7 +43,7 @@
       <section id="ingredients-directions-container">
         <article id="ingredients">
           <h2>Ingredients</h2>
-          <ul>
+          <ul id="ingredient-list">
             <li>Cheese</li>
             <li>Milk</li>
             <li>Apples</li>
@@ -51,7 +51,7 @@
         </article>
         <article id="directions">
           <h2>Directions</h2>
-          <ol>
+          <ol id="directions-list">
             <li>Cheese</li>
             <li>Milk</li>
             <li>Apples</li>

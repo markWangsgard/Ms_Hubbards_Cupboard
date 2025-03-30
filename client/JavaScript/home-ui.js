@@ -1,6 +1,7 @@
 import { getAllRecipes } from "./service.js";
 
 const generateCard = (recipe) => {
+    console.log(recipe);
   const cardElement = document.createElement("div");
   cardElement.classList = "recipe-card";
   cardElement.id = "recipe" + recipe.id
