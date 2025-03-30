@@ -1,4 +1,4 @@
-import { getRecipe } from "./service.js";
+import { getRecipe, sendRating } from "./service.js";
 
 const recipeId = window.location.search?.split("?")[1].split("=")[1];
 const setupPage = async () => {
@@ -160,6 +160,27 @@ const setUpEventListeners = () => {
     star3Element.src = "/images/empty-star.svg";
     star4Element.src = "/images/empty-star.svg";
     star5Element.src = "/images/empty-star.svg";
+  });
+
+  star1Element.addEventListener("click", async () => {
+    await sendRating(1, recipeId);
+    await setupPage();
+  });
+  star2Element.addEventListener("click", async () => {
+    await sendRating(2, recipeId);
+    await setupPage();
+  });
+  star3Element.addEventListener("click", async () => {
+    await sendRating(3, recipeId);
+    await setupPage();
+  });
+  star4Element.addEventListener("click", async () => {
+    await sendRating(4, recipeId);
+    await setupPage();
+  });
+  star5Element.addEventListener("click", async () => {
+    await sendRating(5, recipeId);
+    await setupPage();
   });
 };
 

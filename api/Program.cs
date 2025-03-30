@@ -55,22 +55,45 @@ app.MapGet("/recipes/{id}", (int id) =>
 {
     return convertDifficulty().Find((recipe) => recipe.Id == id);
 });
+app.MapPost("/rating/{id}/{rating}", (int id, int rating) => {
+    Recipe? currentRecipe = recipeDatabase.Find((Recipe recipe) => {
+        return recipe.Id == id;
+    });
+    currentRecipe.Rating = Math.Round((currentRecipe.Rating + rating)/2,1);
+    var json = JsonSerializer.Serialize(recipeDatabase);
+    File.WriteAllText(fileName, json);
+});
 
 app.Run();
 
 
-public record Recipe
-(
-    int Id,
-    string Title,
-    string Creator,
-    string PhotoURL,
-    int ServingSize,
-    TimeToMake Duration,
-    RecipeDifficulty Difficulty,
-    double Rating,
-    List<Ingredient> Ingredients,
-    List<string> Directions);
+public class Recipe
+{
+    internal int Id { get; set; }
+    internal string Title { get; set; }
+    internal string Creator { get; set; }
+    internal string PhotoURL { get; set; }
+    internal int ServingSize { get; set; }
+    internal TimeToMake Duration { get; set; }
+    internal RecipeDifficulty Difficulty { get; set; }
+    internal double Rating { get; set; }
+    internal List<Ingredient> Ingredients { get; set; }
+    internal List<string> Directions { get; set; }
+
+    internal Recipe(int id, string title, string creator, string photoURL, int servingSize, TimeToMake duration, RecipeDifficulty difficulty, double rating, List<Ingredient> ingredients, List<string> directions)
+    {
+        this.Id = id;
+        this.Title = title;
+        this.Creator = creator;
+        this.PhotoURL = photoURL;
+        this.ServingSize = servingSize;
+        this.Duration = duration;
+        this.Difficulty = difficulty;
+        this.Rating = rating;
+        this.Ingredients = ingredients;
+        this.Directions = directions;
+    }
+    }
 
 public record RecipeWithDifficultyInInt
 (
