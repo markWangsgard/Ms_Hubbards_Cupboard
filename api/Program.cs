@@ -11,8 +11,8 @@ app.UseCors(x => x.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
 
 string fileName = "recipes.json";
 List<Recipe> recipeDatabase = new();
-Ingredient ingredient=new("Shredded Cheese", 1, "Cup");
 
+Ingredient ingredient=new("Shredded Cheese", 1, "Cup");
 for (int i = 0; i < 20; i++)
 {
     Recipe newRecipe = new Recipe(i, "Hello", "Mark", "/images/pancakes.jpg", 3, new TimeToMake(1, 30), RecipeDifficulty.Easy, 4.5, new List<Ingredient>([ingredient, ingredient, ingredient]), new List<string>(["Step 1", "Step 2", "Step 3"]));
@@ -21,7 +21,8 @@ for (int i = 0; i < 20; i++)
 if (File.Exists(fileName))
 {
     var json = File.ReadAllText(fileName);
-    recipeDatabase.AddRange(JsonSerializer.Deserialize<List<Recipe>>(json));
+    List<Recipe> recipes = JsonSerializer.Deserialize<List<Recipe>>(json);
+    recipeDatabase.AddRange(recipes);
 }
 
 List<RecipeWithDifficultyInInt> convertDifficulty()
@@ -60,7 +61,7 @@ app.MapPost("/rating/{id}/{rating}", (int id, int rating) => {
         return recipe.Id == id;
     });
     currentRecipe.Rating = Math.Round((currentRecipe.Rating + rating)/2,1);
-    var json = JsonSerializer.Serialize(recipeDatabase);
+    string json = JsonSerializer.Serialize(recipeDatabase);
     File.WriteAllText(fileName, json);
 });
 
@@ -69,18 +70,18 @@ app.Run();
 
 public class Recipe
 {
-    internal int Id { get; set; }
-    internal string Title { get; set; }
-    internal string Creator { get; set; }
-    internal string PhotoURL { get; set; }
-    internal int ServingSize { get; set; }
-    internal TimeToMake Duration { get; set; }
-    internal RecipeDifficulty Difficulty { get; set; }
-    internal double Rating { get; set; }
-    internal List<Ingredient> Ingredients { get; set; }
-    internal List<string> Directions { get; set; }
+    public int Id { get; set; }
+    public string Title { get; set; }
+    public string Creator { get; set; }
+    public string PhotoURL { get; set; }
+    public int ServingSize { get; set; }
+    public TimeToMake Duration { get; set; }
+    public RecipeDifficulty Difficulty { get; set; }
+    public double Rating { get; set; }
+    public List<Ingredient> Ingredients { get; set; }
+    public List<string> Directions { get; set; }
 
-    internal Recipe(int id, string title, string creator, string photoURL, int servingSize, TimeToMake duration, RecipeDifficulty difficulty, double rating, List<Ingredient> ingredients, List<string> directions)
+    public Recipe(int id, string title, string creator, string photoURL, int servingSize, TimeToMake duration, RecipeDifficulty difficulty, double rating, List<Ingredient> ingredients, List<string> directions)
     {
         this.Id = id;
         this.Title = title;
