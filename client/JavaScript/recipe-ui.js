@@ -4,7 +4,6 @@ const recipeId = window.location.search?.split("?")[1].split("=")[1];
 const setupPage = async () => {
     
     const recipe = await getRecipe(recipeId);
-    console.log(recipe)
     
     document.title = recipe.title;
     //img

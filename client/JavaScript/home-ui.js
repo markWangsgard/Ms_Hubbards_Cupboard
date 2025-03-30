@@ -1,7 +1,6 @@
 import { getAllRecipes } from "./service.js";
 
 const generateCard = (recipe) => {
-    console.log(recipe);
   const cardElement = document.createElement("div");
   cardElement.classList = "recipe-card";
   cardElement.id = "recipe" + recipe.id
@@ -91,6 +90,10 @@ const generateCard = (recipe) => {
     cardElement.appendChild(favoriteIconElement);
     cardElement.appendChild(favoriteButtonElement);
 
+    cardElement.addEventListener("click", (e) => {
+        window.location.href = `http://127.0.0.1:5500/html/recipe.html?id=${recipe.id}`;
+    })
+
   return cardElement;
 };
 
@@ -107,7 +110,6 @@ const newRecipe = {
     directions: []
 }
 
-// console.log(generateCard(newRecipe));
 const allRecipesContainerElement = document.getElementById("all-recipes-container");
 
 const allRecipes = await getAllRecipes();
