@@ -18,10 +18,17 @@ header {
   color: var(--header-text-color);
 
   width: 100%;
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 80px;
+    padding: 1em;
+  }
 
   h1 {
     margin: 0.5;
-    padding-left: .5em 
+    /* padding-left: .5em  */
   }
 }
 body {
