@@ -79,10 +79,10 @@ section {
 
   h2 {
     margin: 0.25em;
-    padding: 1em;
+    padding: .5em;
     border-radius: 1.2em;
     text-align: center;
-    /* background-color: var(--recipe-card-background-color); */
+    background-color: var(--recipe-card-background-color);
     width: 70%;
   }
 }
