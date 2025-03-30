@@ -67,9 +67,20 @@ main {
   #directions {
     flex-grow: 1;
   }
+  button {
+    font-size: small;
+    padding: .5em;
+    border-radius: 1em;
+  }
+}
+#rate-recipe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 2em;
 }
 
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 600px) {
   #recipe-main-info-container {
     flex-direction: column; 
     #recipe-photo {
@@ -89,7 +100,7 @@ main {
     }
   }
 }
-@media screen and (min-width: 780px) {
+@media screen and (min-width: 600px) {
   #recipe-main-info-container {
     flex-direction: row;
     width: 100%;
