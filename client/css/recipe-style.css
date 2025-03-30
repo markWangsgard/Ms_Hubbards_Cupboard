@@ -1,42 +1,113 @@
+:root {
+  --recipe-card-background-color: #f7f7f7;
+  --dark-text-color: #332000;
+}
 main {
-    width: 100%;
-    padding-top: 2em;
+  width: 100%;
+  color: var(--dark-text-color);
+  /* padding-top: 2em; */
 }
 #recipe-main-info-container {
+  background-color: var(--recipe-card-background-color);
+
+  display: flex;
+  width: 100%;
+
+  #recipe-photo {
+    background-image: url("/images/pancakes.jpg");
+    background-size: cover;
+    background-position: center;
+
+    flex-grow: 1;
+  }
+
+  #recipe-info {
+    /* As Flex Parent */
     display: flex;
-    justify-content: space-around;
-    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-    article {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+    /* As flex Child */
+    /* flex-grow: 1; */
+    width: 60%;
+    height:20em;
+  }
 
-    div {
-        display: flex;
-        align-items: center;
-        
-        h3 {
-            text-align: center;
-            padding: .5em;
-        }
+  h3 {
+    margin: 0;
+  }
+  div {
+    display: flex;
+    align-items: center;
+
+    h3 {
+      text-align: center;
+      padding: 0.5em;
     }
-}
-#recipe-photo {
-    height: 250px;
+    p {
+        margin-left: 1em;
+        font-size: medium;
+      }
+  }
 }
 
 #ingredients-directions-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  #ingredients {
+    /* flex-grow: 1; */
+
+    margin: 1em;
+    background-color: var(--recipe-card-background-color);
+    border-radius: 1em;
+    border-style: solid;
+    border-color: black;
+  }
+  #directions {
+    flex-grow: 1;
+  }
+}
+
+@media screen and (max-width: 780px) {
+  #recipe-main-info-container {
+    flex-direction: column;
+
+    #recipe-photo {
+      height: 15em;
+      width: 100%;
+    }
+  }
+  #ingredients-directions-container {
+    flex-direction: column;
+    align-items: center;
 
     #ingredients {
-        padding-left: 3em;
-        flex-grow: 1;
+        padding: 0;
+        width: fit-content;
     }
-    #directions {
-        flex-grow: 4;
+  }
+}
+@media screen and (min-width: 780px) {
+  #recipe-main-info-container {
+    flex-direction: row;
+
+    #recipe-photo {
+      height: 100;
+      width: 100%;
     }
+  }
+  #ingredients-directions-container {
+    flex-direction: row;
+
+    #ingredients {
+        padding: 1em;
+
+        h2 {
+            margin-top: 0;
+        }
+    }
+  }
 }
