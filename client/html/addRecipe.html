@@ -28,17 +28,17 @@
             <div id="time-to-make-container">
                 <label for="time-to-make">Time to make</label>
                 <div>
-                    <input type="number" id="time-to-make-hours" name="time-to-make" placeholder="1">
+                    <input type="number" id="time-to-make-hours" name="time-to-make-hours" placeholder="1" min="0">
                     <label for="time-to-make-hours">Hours</label>
                 </div>
                 <div>
-                    <input type="number" id="time-to-make-minutes" name="time-to-make" placeholder="30">
+                    <input type="number" id="time-to-make-minutes" name="time-to-make-minutes" placeholder="30" min="0" max="59">
                     <label for="time-to-make-minutes">Minutes</label>
                 </div>
             </div> 
             <div>
                 <label for="serving-size">Serving Size</label>
-                <input type="text" id="serving-size" name="serving-size">
+                <input type="number" id="serving-size" name="serving-size" min="1">
             </div>
             <div>
                 <label for="difficulty">Difficulty</label>
