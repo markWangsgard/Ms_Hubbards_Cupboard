@@ -18,7 +18,7 @@ const generateCard = (recipe) => {
     const creatorElement = document.createElement("h4");
     creatorElement.textContent = recipe.creator;
     const durationElement = document.createElement("p");
-
+    durationElement.classList = "time-to-make";
     const durationHoursString = recipe.duration.hours > 0 ? recipe.duration.hours + (recipe.duration.hours === 1 ? " Hour" : " Hours") : "";
     const durationMinutesString = recipe.duration.minutes > 0 ? " " + recipe.duration.minutes + (recipe.duration.minutes === 1 ? " Minute" : " Minutes") : "";
     const durationString = `Time to make: ${durationHoursString}${durationMinutesString}`;

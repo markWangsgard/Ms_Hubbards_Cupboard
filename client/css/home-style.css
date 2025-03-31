@@ -57,6 +57,10 @@ input {
     margin-bottom: .3em;
   }
   
+  .time-to-make {
+    width: 15em;
+  }
+
   div {
     display: flex;
     align-items: center;
