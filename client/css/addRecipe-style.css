@@ -1,0 +1,27 @@
+:root {
+
+}
+.hidden {
+    display: none;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    input {
+        width: 15em;
+
+    }
+    div {
+        display: flex;
+        align-items: start;
+    }
+    #ingredient-input-container, #time-to-make-container {
+        display: flex;
+        flex-direction: column;
+    }
+    #time-to-make-hours, #time-to-make-minutes {
+        text-align: end;
+    }
+}
