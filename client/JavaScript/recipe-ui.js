@@ -55,7 +55,7 @@ const setupPage = async () => {
   //rating
   const rateContainerElement = document.getElementById("rate");
   rateContainerElement.replaceChildren();
-  const rating = Math.round(recipe.rating);
+  const rating = Math.round(recipe.rating,1);
   for (var i = 0; i < rating; i++) {
     const ratingImageElement = document.createElement("img");
     ratingImageElement.src = "/images/yellow-star.svg";

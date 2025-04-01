@@ -62,7 +62,7 @@ app.MapPost("/rating/{id}/{rating}", (int id, int rating) => {
     Recipe? currentRecipe = recipeDatabase.Find((Recipe recipe) => {
         return recipe.Id == id;
     });
-    currentRecipe.Rating = Math.Round((currentRecipe.Rating + rating)/2,1);
+    currentRecipe.Rating = (currentRecipe.Rating + rating)/2;
     string json = JsonSerializer.Serialize(recipeDatabase);
     File.WriteAllText(fileName, json);
 });

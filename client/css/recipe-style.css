@@ -1,6 +1,8 @@
 :root {
   --recipe-card-background-color: #f7f7f7;
   --dark-text-color: #332000;
+  --button-background-color: #69392b;
+
 }
 main {
   width: 100%;
@@ -61,16 +63,24 @@ main {
     margin: 1em;
     background-color: var(--recipe-card-background-color);
     border-radius: 1em;
-    border-style: solid;
-    border-color: black;
+    /* border-style: solid; */
+    /* border-color: black; */
   }
   #directions {
     flex-grow: 1;
+    margin: 1em;
+    border-radius: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-bottom: 1em;
+    background-color: var(--recipe-card-background-color);
   }
   button {
     font-size: small;
     padding: .5em;
     border-radius: 1em;
+    background-color: var(--button-background-color);
+    color: var(--recipe-card-background-color);
   }
 }
 #rate-recipe {
