@@ -1,5 +1,6 @@
 using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.VisualBasic;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -56,19 +57,52 @@ app.MapGet("/recipes/search", ([FromQuery] string title) =>
 });
 app.MapGet("/recipes/{id}", (int id) =>
 {
-    return convertDifficulty().Find((recipe) => recipe.Id == id);
+    return convertDifficulty().FindLast((recipe) => recipe.Id == id);
 });
-app.MapPost("/rating/{id}/{rating}", (int id, int rating) => {
-    Recipe? currentRecipe = recipeDatabase.Find((Recipe recipe) => {
+app.MapGet("/recipes/id", ([FromQuery] string title) => 
+{
+    return recipeDatabase.Find(recipe => recipe.Title == title).Id;
+});
+app.MapPost("/rating/{id}/{rating}", (int id, int rating) =>
+{
+    Recipe? currentRecipe = recipeDatabase.Find((Recipe recipe) =>
+    {
         return recipe.Id == id;
     });
-    currentRecipe.Rating = (currentRecipe.Rating + rating)/2;
-    string json = JsonSerializer.Serialize(recipeDatabase);
-    File.WriteAllText(fileName, json);
+    currentRecipe.Rating = (currentRecipe.Rating + rating) / 2;
+    saveRecipes();
 });
+app.MapPost("/newRecipe/", (RecipeWithDifficultyInInt recipeObject) =>
+{
+    Recipe recipe = new(
+        recipeObject.Id,
+        recipeObject.Title,
+        recipeObject.Creator,
+        recipeObject.PhotoURL,
+        recipeObject.ServingSize,
+        recipeObject.Duration,
+        (RecipeDifficulty)recipeObject.Difficulty,
+        recipeObject.Rating,
+        recipeObject.Ingredients,
+        recipeObject.Directions
+    );
+    // var recipeObject = JsonSerializer.Deserialize<Recipe>(recipe);
+    recipeDatabase.Add(recipe);
+    recipe.Id = recipeDatabase.IndexOf(recipe);
+});
+app.MapPost("/newRecipe/photo/{id}", (int id, IFormFile photo) =>
+{
+    Console.WriteLine(id);
+    Console.WriteLine(photo.FileName);
+}).DisableAntiforgery();
 
 app.Run();
 
+void saveRecipes()
+{
+    string json = JsonSerializer.Serialize(recipeDatabase);
+    File.WriteAllText(fileName, json);
+}
 
 public class Recipe
 {
@@ -96,7 +130,7 @@ public class Recipe
         this.Ingredients = ingredients;
         this.Directions = directions;
     }
-    }
+}
 
 public record RecipeWithDifficultyInInt
 (

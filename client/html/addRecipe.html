@@ -13,7 +13,7 @@
   <body>
     <header id="header"></header>
     <main>
-      <form id="recipe-form">
+      <form id="form">
         <section>
           <article id="upload-image-container">
             <label for="image"><h2>Image:</h2></label>
@@ -82,6 +82,7 @@
             <div>
                 <label for="difficulty">Difficulty:</label>
                 <select name="difficulty" id="difficulty">
+                    <option value="" disabled selected>Please Choose a Difficulty</option>
                     <option value="1">Easy</option>
                     <option value="2">Standard</option>
                     <option value="3">Medium</option>
@@ -97,12 +98,6 @@
             <h2>Ingredients</h2>
             <p class="error hidden" id="error-ingredients">Please add some ingredients. Its kinda hard to make something out of nothing.</p>
             <ul id="list-of-ingredients">
-                <li>
-                    <p>
-                        1 Cup Shredded Cheese
-                    </p>
-                    <img src="/images/delete-icon.svg" class="icon" alt="">
-                </li>
             </ul>
                 <div>
                     <label for="ingredient-quantity">Ingredient Quantity:</label>

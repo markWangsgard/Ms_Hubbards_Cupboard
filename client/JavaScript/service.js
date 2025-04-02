@@ -10,6 +10,11 @@ export const getRecipe = async (id) => {
   const object = await response.json();
   return object;
 };
+export const GetRecipeId = async (title) => {
+  const response = await fetch(`${url}/recipes/id?title=${title}`);
+  const object = await response.json();
+  return object;
+};
 export const sendRating = async (rating, id) => {
   const response = await fetch(`${url}/rating/${id}/${rating}`, {
     body: JSON.stringify(rating),
@@ -17,5 +22,42 @@ export const sendRating = async (rating, id) => {
     headers: {
       "Content-Type": "application/json"
     }
+  });
+};
+/*
+export const SendRecipe = async (recipe, photo) => {
+  const json = JSON.stringify(recipe);
+  const formData = new FormData();
+  // formData.append("recipe", json);
+  formData.append("photo", photo);
+  const response = await fetch(`${url}/newRecipe/${json}`, {
+    body: formData,
+    method: "POST",
+    headers: {
+      "Content-Type": "multipart/form-data"
+    }
+  });
+} */
+
+export const SendRecipe = async (recipe, photo) => {
+  const json = JSON.stringify(recipe);
+  const response = await fetch(`${url}/newRecipe`, {
+    body: json,
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+
+  const newRecipeID = await GetRecipeId(recipe.title);
+  await SendPhoto(photo, newRecipeID);
+}
+export const SendPhoto = async (photo, id) => {
+  const formData = new FormData();
+  formData.append("photo", photo);
+
+  const response = await fetch(`${url}/newRecipe/photo/${id}`, {
+    method: "POST",
+    body: formData,
   });
 };
