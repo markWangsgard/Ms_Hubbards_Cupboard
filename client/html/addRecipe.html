@@ -12,15 +12,16 @@
   <body>
     <header id="header"></header>
     <main>
-      <form>
+      <form id="recipe-form">
         <section>
           <article id="upload-image-container">
-            <label for="image">Image:</label>
+            <label for="image"><h2>Image:</h2></label>
             <p class="error hidden" id="error-image">Please upload an image. That way we know when we messed up.</p>
             <input type="file" id="image" name="image" accept="image/*" />
             <img src="/images/no-photo-default.svg" alt="default image" />
           </article>
           <article id="recipe-info-container">
+            <h2>Recipe Info</h2>
             <div>
               <label for="title">Title:</label>
               <input
@@ -94,7 +95,7 @@
         <article id="ingredient-input-container">
             <h2>Ingredients</h2>
             <p class="error hidden" id="error-ingredients">Please add some ingredients. Its kinda hard to make something out of nothing.</p>
-            <ul>
+            <ul id="list-of-ingredients">
                 <li>
                     <p>
                         1 Cup Shredded Cheese
@@ -102,31 +103,37 @@
                     <img src="/images/delete-icon.svg" class="icon" alt="">
                 </li>
             </ul>
-            <div>
-                <label for="ingredient-quantity">Ingredient Quantity:</label>
-                <input
-                type="number"
-                id="ingredient-quantity"
-                name="ingredient-quantity"
-                placeholder="3"
-              />
-            </div>
-            <div>
-              <label for="ingredient-unit">Ingredient Unit:</label>
-              <select name="ingredient-unit" id="ingredient-unit">
-                <option value="">Cup(s)</option>
-                <option value="">Tablespoon(s)</option>
-                <option value="">Teaspoon(s)</option>
-                <option value="">Pound(s)</option>
-                <option value="">Ounce(s)</option>
-                <option value="">Ounce(s) Can</option>
-              </select>
-            </div>
-            <div>
-              <label for="ingredient-name">Ingredient Name:</label>
-              <input type="text" id="ingredient-name" placeholder="Water"/>
-            </div>
-            <button class="button">Add Ingredient</button>
+                <div>
+                    <label for="ingredient-quantity">Ingredient Quantity:</label>
+                    <input
+                    type="number"
+                    id="ingredient-quantity"
+                    name="ingredient-quantity"
+                    min="1"
+                    placeholder="3"
+                    />
+                </div>
+                <p class="error hidden" id="error-ingredient-quantity">Please add a quantity. Kinda hard to mix in zero of something.</p>
+                <div>
+                    <label for="ingredient-unit">Ingredient Unit:</label>
+                    <select name="ingredient-unit" id="ingredient-unit">
+                        <option value="" disabled selected>Please Choose a Unit</option>
+                        <option value="Cups">Cup(s)</option>
+                        <option value="Tablespoons">Tablespoon(s)</option>
+                        <option value="Teaspoons">Teaspoon(s)</option>
+                        <option value="Pounds">Pound(s)</option>
+                        <option value="Ounces">Ounce(s)</option>
+                        <option value="Ounce-can">Ounce(s) Can</option>
+                        <option value="Count">Count (example: eggs)</option>
+                    </select>
+                </div>
+                <p class="error hidden" id="error-ingredient-unit">Please choose a unit. What are we using? Cups? Gallons? Elephants?</p>
+                <div>
+                    <label for="ingredient-name">Ingredient Name:</label>
+                    <input type="text" id="ingredient-name" placeholder="Water"/>
+                </div>
+                <p class="error hidden" id="error-ingredient-name">Please give the ingredient a name. I'm pretty sure there isn't an ingredient version of You-Know-Who.</p>
+                <button class="button" id="add-ingredient-button">Add Ingredient</button>
           </article>
           <article id="directions-input-container">
             <label for="directions">
