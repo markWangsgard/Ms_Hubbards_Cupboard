@@ -63,6 +63,7 @@ main {
     margin: 1em;
     background-color: var(--recipe-card-background-color);
     border-radius: 1em;
+    height: fit-content;
     /* border-style: solid; */
     /* border-color: black; */
   }
