@@ -95,6 +95,7 @@ section {
   width: 100%;
 }
 
+/* mobile */
 @media only screen and (max-width: 600px) {
   .recipe-container {
     flex-direction: column;
@@ -114,6 +115,9 @@ section {
   }
   .favorite-icon {
     display: none;
+  }
+  #search-bar {
+    width: 80%;
   }
 }
 @media only screen and (min-width: 600px) {

@@ -8,6 +8,7 @@ body {
   margin: 0;
   background-color: var(--page-background-color);
   width: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,10 +23,31 @@ body {
   /* filter: contrast(80%); */
   /* filter: saturate(50%); */
 }
+a {
+  color: var(--header-text-color);
+  text-decoration: none;
+  background-color: var(--header-background-color);
+  padding: .5em;
+  border-radius: .5em;
+  transition-property: transform;
+  transition: .5s;
+}
+a:hover {
+  transform: scale(1.2);
+}
+nav {
+  background-color: var(--nav-background-color);
+  display: flex;
+  justify-content: space-around;
+  padding: 1em;
+  border-radius: .5em;
+  
+}
 header {
   background-color: var(--header-background-color);
   color: var(--header-text-color);
   width: 100%;
+  /* min-height: max-content; */
   display: flex;
   flex-direction: column;
   border-bottom-left-radius: .5em;
@@ -34,42 +56,68 @@ header {
   div {
     display: flex;
     align-items: center;
-
-  }
-  nav {
-    background-color: var(--nav-background-color);
-    display: flex;
-    justify-content: space-around;
-    padding: 1em;
-    border-radius: .5em;
-
-    a {
-      color: var(--header-text-color);
-      text-decoration: none;
-      background-color: var(--header-background-color);
-      padding: .5em;
-      border-radius: .5em;
-      transition-property: transform;
-      transition: .5s;
-    }
-    a:hover {
-      transform: scale(1.2);
-    }
+    width: 100%;
   }
 
   img {
-    width: 80px;
+    width: 65px;
     padding: 1em;
-    /* padding-bottom: 0; */
   }
 
   h1 {
     margin: 0.5;
+    width: fit-content;
     /* padding-left: .5em  */
   }
 }
-.mobile-hidden {
-  @media screen and (max-width: 600px) {
+main {
+  flex-grow: 1;
+  min-height: 0;
+  width: 100%;
+}
+footer {
+  background-color: var(--header-background-color);
+
+  width: 100%;
+  height: fit-content;
+  border-top-left-radius: 1.5em;
+  border-top-right-radius: 1.5em;
+  a {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 3em;
+    text-align: center;
+  }
+  img {
+    filter: invert();
+  }
+  p {
+    margin: .3em;
+  }
+}
+/* mobile */
+@media screen and (max-width: 600px) {
+    .mobile-hidden {
+    display: none;
+  }
+  header {
+    font-size: small;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+    img {
+    width: 40px;
+      }
+  }
+  main {
+    overflow-y: auto;
+
+  }
+}
+/* desktop */
+@media screen and (min-width: 600px) {
+    .mobile-visible {
     display: none;
   }
 }

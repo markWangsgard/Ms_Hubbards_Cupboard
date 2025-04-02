@@ -1,4 +1,5 @@
 const headerElement = document.getElementById("header");
+// headerElement.classList = "mobile-hidden"
 const logoAndTitleContainerElement = document.createElement("div");
 const logoElement = document.createElement("img");
 logoElement.src = "/images/logo.png";
