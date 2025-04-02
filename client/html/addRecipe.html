@@ -16,6 +16,7 @@
         <section>
           <article id="upload-image-container">
             <label for="image">Image:</label>
+            <p class="error hidden" id="error-image">Please upload an image. That way we know when we messed up.</p>
             <input type="file" id="image" name="image" accept="image/*" />
             <img src="/images/no-photo-default.svg" alt="default image" />
           </article>
@@ -29,75 +30,81 @@
                 placeholder="Ms. Hubbard's Bone Soup"
               />
             </div>
+            <p class="error hidden" id="error-title">Please enter a Title. How would you like it if you didn't have a name?</p>
             <div>
-              <label for="creator">Creator:</label>
-              <input
+                <label for="creator">Creator:</label>
+                <input
                 type="text"
                 id="creator"
                 name="creator"
                 placeholder="Ms. Hubbard"
-              />
+                />
             </div>
+            <p class="error hidden" id="error-creator">Please enter a creator. Give them some credit.</p>
             <div id="time-to-make-container">
-              <label for="time-to-make">Time to make:</label>
-              <div>
-                <input
-                  type="number"
-                  id="time-to-make-hours"
-                  name="time-to-make-hours"
-                  placeholder="1"
-                  min="0"
-                />
-                <label for="time-to-make-hours">Hours</label>
-              </div>
-              <div>
-                <input
-                  type="number"
-                  id="time-to-make-minutes"
-                  name="time-to-make-minutes"
-                  placeholder="30"
-                  min="0"
-                  max="59"
-                />
-                <label for="time-to-make-minutes">Minutes</label>
-              </div>
+                <label for="time-to-make">Time to make:</label>
+                <div>
+                    <input
+                    type="number"
+                    id="time-to-make-hours"
+                    name="time-to-make-hours"
+                    placeholder="1"
+                    min="0"
+                    />
+                    <label for="time-to-make-hours">Hours</label>
+                </div>
+                <div>
+                    <input
+                    type="number"
+                    id="time-to-make-minutes"
+                    name="time-to-make-minutes"
+                    placeholder="30"
+                    min="0"
+                    max="59"
+                    />
+                    <label for="time-to-make-minutes">Minutes</label>
+                </div>
+                <p class="error hidden" id="error-time-to-make">Please enter a time to make. I don't want to spend forever making something.</p>
             </div>
             <div>
-              <label for="serving-size">Serving Size:</label>
-              <input
+                <label for="serving-size">Serving Size:</label>
+                <input
                 type="number"
                 id="serving-size"
                 name="serving-size"
                 placeholder="8"
                 min="1"
-              />
+                />
+                <p class="error hidden" id="error-serving-size">Please enter a serving size. Is this for party? Or is for a lonely night all alone?</p>
             </div>
             <div>
-              <label for="difficulty">Difficulty:</label>
-              <select name="difficulty" id="difficulty">
-                <option value="1">Easy</option>
-                <option value="2">Standard</option>
-                <option value="3">Medium</option>
-                <option value="4">Intermediate</option>
-                <option value="5">Hard</option>
-              </select>
+                <label for="difficulty">Difficulty:</label>
+                <select name="difficulty" id="difficulty">
+                    <option value="1">Easy</option>
+                    <option value="2">Standard</option>
+                    <option value="3">Medium</option>
+                    <option value="4">Intermediate</option>
+                    <option value="5">Hard</option>
+                </select>
             </div>
-          </article>
-        </section>
-        <section>
-          <article id="ingredient-input-container">
+            <p class="error hidden" id="error-difficulty">Please enter a difficulty. Old Ms. Hubbard can only do some things.</p>
+        </article>
+    </section>
+    <section>
+        <article id="ingredient-input-container">
             <h2>Ingredients</h2>
+            <p class="error hidden" id="error-ingredients">Please add some ingredients. Its kinda hard to make something out of nothing.</p>
             <ul>
-              <li>
-                <p>
-                    1 Cup Shredded Cheese
-                </p>
-                <img src="/images/delete-icon.svg" class="icon" alt="">
-            </li>
+                <li>
+                    <p>
+                        1 Cup Shredded Cheese
+                    </p>
+                    <img src="/images/delete-icon.svg" class="icon" alt="">
+                </li>
             </ul>
             <div>
-              <label for="ingredient-quantity">Ingredient Quantity:</label>
-              <input
+                <label for="ingredient-quantity">Ingredient Quantity:</label>
+                <input
                 type="number"
                 id="ingredient-quantity"
                 name="ingredient-quantity"
@@ -124,6 +131,7 @@
           <article id="directions-input-container">
             <label for="directions">
               <h2>Directions:</h2>
+            <p class="error hidden" id="error-directions">Please add some directions. I failed my improv class.</p>
             </label>
             <p>Please hit enter between each step</p>
             <textarea name="directions" id="directions"
