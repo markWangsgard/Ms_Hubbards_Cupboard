@@ -1,7 +1,16 @@
 :root {
   --header-background-color: #69392b;
+  --nav-background-color: #45261c;
   --header-text-color: #f1e2df;
   --page-background-color: #ffb22c;
+}
+body {
+  margin: 0;
+  background-color: var(--page-background-color);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .icon {
   height: 20px;
@@ -16,14 +25,42 @@
 header {
   background-color: var(--header-background-color);
   color: var(--header-text-color);
-
   width: 100%;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  border-bottom-left-radius: .5em;
+  border-bottom-right-radius: .5em;
+
+  div {
+    display: flex;
+    align-items: center;
+
+  }
+  nav {
+    background-color: var(--nav-background-color);
+    display: flex;
+    justify-content: space-around;
+    padding: 1em;
+    border-radius: .5em;
+
+    a {
+      color: var(--header-text-color);
+      text-decoration: none;
+      background-color: var(--header-background-color);
+      padding: .5em;
+      border-radius: .5em;
+      transition-property: transform;
+      transition: .5s;
+    }
+    a:hover {
+      transform: scale(1.2);
+    }
+  }
 
   img {
     width: 80px;
     padding: 1em;
+    /* padding-bottom: 0; */
   }
 
   h1 {
@@ -31,11 +68,8 @@ header {
     /* padding-left: .5em  */
   }
 }
-body {
-  margin: 0;
-  background-color: var(--page-background-color);
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.mobile-hidden {
+  @media screen and (max-width: 600px) {
+    display: none;
+  }
 }
