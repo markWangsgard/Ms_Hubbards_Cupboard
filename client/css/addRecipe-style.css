@@ -1,27 +1,124 @@
 :root {
---button-background-color: maroon;
+  --button-background-color: #69392b;
+  --card-background-color: #f7f7f7;
 }
 .hidden {
-    display: none;
+  display: none;
+}
+.error {
+    color: red;
+}
+body {
+  width: 100%;
+}
+main {
+  width: 100%;
+}
+input,
+select,
+textarea {
+  border-radius: 0.5em;
+  border-style: solid;
+  border-color: black;
 }
 form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 2em;
+
+  input,
+  select {
+    margin-left: 0.5em;
+    width: 15em;
+  }
+  .button {
+    width: 10em;
+    color: var(--card-background-color);
+    background-color: var(--button-background-color);
+    padding: 0.5em;
+    border-radius: 1em;
+  }
+  section {
+    display: flex;
+    width: 100%;
+    justify-content: stretch;
+  }
+  article {
+    flex-grow: 1;
+    background-color: var(--card-background-color);
+    margin: 1em;
+    padding: 1em;
+    border-radius: 1em;
+    div {
+      margin: 0.25em;
+    }
+  }
+  #upload-image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  img {
+    width: 10em;
+  }
+  #recipe-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  #ingredient-input-container {
+    height: fit-content;
+    flex-grow: 0;
+    display: flex;
+    flex-direction: column;
+    div {
+      display: flex;
+    }
+    input {
+      flex-grow: 1;
+    }
+    button {
+      margin: auto;
+    }
+  }
+  li {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    p {
+      margin: 0;
+    }
+  }
+  #directions-input-container {
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    input {
-        width: 15em;
+    h2 {
+      margin-bottom: 0;
+    }
+  }
+  textarea {
+    height: 20em;
+    width: 100%;
+  }
+}
 
-    }
-    div {
-        display: flex;
-        align-items: start;
-    }
-    #ingredient-input-container, #time-to-make-container {
-        display: flex;
-        flex-direction: column;
-    }
-    #time-to-make-hours, #time-to-make-minutes {
-        text-align: end;
-    }
+/* Desktop */
+@media screen and (min-width: 600px) {
+  section {
+    flex-direction: row;
+  }
+  #ingredient-input-container {
+    width: fit-content;
+  }
+}
+/* mobile */
+@media screen and (max-width: 600px) {
+  section {
+    flex-direction: column;
+    width: 100%;
+  }
 }

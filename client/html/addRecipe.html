@@ -1,83 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/header-footer-style.css">
-    <link rel="stylesheet" href="/css/addRecipe-style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/header-footer-style.css" />
+    <link rel="stylesheet" href="/css/addRecipe-style.css" />
     <script type="module" src="/JavaScript/header.js"></script>
     <script type="module" src="/JavaScript/addRecipe-ui.js"></script>
     <title>Add Recipe</title>
-</head>
-<body>
+  </head>
+  <body>
     <header id="header"></header>
     <main>
-        <form>
+      <form>
+        <section>
+          <article id="upload-image-container">
+            <label for="image">Image:</label>
+            <input type="file" id="image" name="image" accept="image/*" />
+            <img src="/images/no-photo-default.svg" alt="default image" />
+          </article>
+          <article id="recipe-info-container">
             <div>
-                <label for="title">Title</label>
-                <input type="text" id="title" name="title" placeholder="Ms. Hubbard's Bone Soup">
+              <label for="title">Title:</label>
+              <input
+                type="text"
+                id="title"
+                name="title"
+                placeholder="Ms. Hubbard's Bone Soup"
+              />
             </div>
             <div>
-                <label for="image">Image</label>
-                <input type="file" id="image" name="image" accept="image/*">
-            </div>
-            <div>
-                <label for="creator">Creator</label>
-                <input type="text" id="creator" name="creator" placeholder="Ms. Hubbard">
+              <label for="creator">Creator:</label>
+              <input
+                type="text"
+                id="creator"
+                name="creator"
+                placeholder="Ms. Hubbard"
+              />
             </div>
             <div id="time-to-make-container">
-                <label for="time-to-make">Time to make</label>
-                <div>
-                    <input type="number" id="time-to-make-hours" name="time-to-make-hours" placeholder="1" min="0">
-                    <label for="time-to-make-hours">Hours</label>
-                </div>
-                <div>
-                    <input type="number" id="time-to-make-minutes" name="time-to-make-minutes" placeholder="30" min="0" max="59">
-                    <label for="time-to-make-minutes">Minutes</label>
-                </div>
-            </div> 
-            <div>
-                <label for="serving-size">Serving Size</label>
-                <input type="number" id="serving-size" name="serving-size" min="1">
+              <label for="time-to-make">Time to make:</label>
+              <div>
+                <input
+                  type="number"
+                  id="time-to-make-hours"
+                  name="time-to-make-hours"
+                  placeholder="1"
+                  min="0"
+                />
+                <label for="time-to-make-hours">Hours</label>
+              </div>
+              <div>
+                <input
+                  type="number"
+                  id="time-to-make-minutes"
+                  name="time-to-make-minutes"
+                  placeholder="30"
+                  min="0"
+                  max="59"
+                />
+                <label for="time-to-make-minutes">Minutes</label>
+              </div>
             </div>
             <div>
-                <label for="difficulty">Difficulty</label>
-                <select name="difficulty" id="difficulty">
-                   <option value="1">Easy</option> 
-                   <option value="2">Standard</option> 
-                   <option value="3">Medium</option> 
-                   <option value="4">Intermediate</option> 
-                   <option value="5">Hard</option> 
-                </select>
-            </div>
-            <div id="ingredient-input-container">
-                <div>
-                    <label for="ingredient-quantity">Ingredient Quantity</label>
-                    <input type="number" id="ingredient-quantity" name="ingredient-quantity">
-                </div>
-                <div>
-                    <label for="ingredient-unit">Ingredient Unit</label>
-                    <select name="ingredient-unit" id="ingredient-unit">
-                        <option value="">Cup</option>
-                        <option value="">Tablespoon</option>
-                        <option value="">Teaspoon</option>
-                        <option value="">Pounds</option>
-                        <option value="">Ounces</option>
-                        <option value="">Ounce Can</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="ingredient-name">Ingredient Name</label>
-                    <input type="text" id="ingredient-name">
-                </div>
-                <button>Add Ingredient</button>
+              <label for="serving-size">Serving Size:</label>
+              <input
+                type="number"
+                id="serving-size"
+                name="serving-size"
+                placeholder="8"
+                min="1"
+              />
             </div>
             <div>
-                <label for="directions">Directions</label>
-                <textarea name="directions" id="directions"></textarea>
+              <label for="difficulty">Difficulty:</label>
+              <select name="difficulty" id="difficulty">
+                <option value="1">Easy</option>
+                <option value="2">Standard</option>
+                <option value="3">Medium</option>
+                <option value="4">Intermediate</option>
+                <option value="5">Hard</option>
+              </select>
             </div>
-            <input type="submit">
-        </form>
+          </article>
+        </section>
+        <section>
+          <article id="ingredient-input-container">
+            <h2>Ingredients</h2>
+            <ul>
+              <li>
+                <p>
+                    1 Cup Shredded Cheese
+                </p>
+                <img src="/images/delete-icon.svg" class="icon" alt="">
+            </li>
+            </ul>
+            <div>
+              <label for="ingredient-quantity">Ingredient Quantity:</label>
+              <input
+                type="number"
+                id="ingredient-quantity"
+                name="ingredient-quantity"
+                placeholder="3"
+              />
+            </div>
+            <div>
+              <label for="ingredient-unit">Ingredient Unit:</label>
+              <select name="ingredient-unit" id="ingredient-unit">
+                <option value="">Cup(s)</option>
+                <option value="">Tablespoon(s)</option>
+                <option value="">Teaspoon(s)</option>
+                <option value="">Pound(s)</option>
+                <option value="">Ounce(s)</option>
+                <option value="">Ounce(s) Can</option>
+              </select>
+            </div>
+            <div>
+              <label for="ingredient-name">Ingredient Name:</label>
+              <input type="text" id="ingredient-name" placeholder="Water"/>
+            </div>
+            <button class="button">Add Ingredient</button>
+          </article>
+          <article id="directions-input-container">
+            <label for="directions">
+              <h2>Directions:</h2>
+            </label>
+            <p>Please hit enter between each step</p>
+            <textarea name="directions" id="directions"
+            placeholder="
+            In a large pot, add water...
+            Then add the bone...
+            "></textarea>
+          </article>
+        </section>
+        <input type="submit" class="button"/>
+      </form>
     </main>
-</body>
+  </body>
 </html>
