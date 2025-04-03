@@ -1,6 +1,14 @@
-import { GetRecipeId, SendRecipe } from "./service.js";
+import { GetPhoto, GetRecipeId, SendRecipe } from "./service.js";
 
 const addEventListeners = () => {
+  const uploadImageElement = document.getElementById("image");
+    uploadImageElement.addEventListener("input", (e) => {
+        e.preventDefault();
+        const imageElement = document.getElementById("displayPhoto")
+        imageElement.src = uploadImageElement.files[0].webkitRelativePath;
+        console.log(uploadImageElement.files[0]);
+    })
+
   const addIngredientButtonElement = document.getElementById(
     "add-ingredient-button"
   );
@@ -82,7 +90,8 @@ const addEventListeners = () => {
         creatorErrorElement.classList.remove("hidden");
       }
       if (!servingSizeInputElement.value) {
-        const servingSizeErrorElement = document.getElementById("error-serving-size");
+        const servingSizeErrorElement =
+          document.getElementById("error-serving-size");
         servingSizeErrorElement.classList.remove("hidden");
       }
       if (
@@ -90,43 +99,45 @@ const addEventListeners = () => {
           timeToMakeMinutesInputElement.value ===
         0
       ) {
-        const timeToMakeErrorElement = document.getElementById("error-time-to-make");
+        const timeToMakeErrorElement =
+          document.getElementById("error-time-to-make");
         timeToMakeErrorElement.classList.remove("hidden");
       }
       if (!difficultyInputElement.value) {
-        const difficultyErrorElement = document.getElementById("error-difficulty");
+        const difficultyErrorElement =
+          document.getElementById("error-difficulty");
         difficultyErrorElement.classList.remove("hidden");
       }
       if (!directionsInputElement.value) {
-        const directionsErrorElement = document.getElementById("error-directions");
+        const directionsErrorElement =
+          document.getElementById("error-directions");
         directionsErrorElement.classList.remove("hidden");
       }
       if (ingredientsToAdd.length === 0) {
-        const ingredientsErrorElement = document.getElementById("error-ingredients");
+        const ingredientsErrorElement =
+          document.getElementById("error-ingredients");
         ingredientsErrorElement.classList.remove("hidden");
       }
-    }
-    else {   
-        const newRecipe = {
-            id: -1,
-            title: titleInputElement.value,
-            creator: creatorInputElement.value,
-            photoURL: "",
-            servingSize: servingSizeInputElement.value,
-            duration: {
-                hours: timeToMakeHoursInputElement.value,
-                minutes: timeToMakeMinutesInputElement.value,
-            },
-            difficulty: difficultyInputElement.value,
-            rating: 5,
-            ingredients: ingredientsToAdd,
-            directions: directionsInputElement.value.split("\n"),
-        };
+    } else {
+      const newRecipe = {
+        id: -1,
+        title: titleInputElement.value,
+        creator: creatorInputElement.value,
+        photoURL: "",
+        servingSize: servingSizeInputElement.value,
+        duration: {
+          hours: timeToMakeHoursInputElement.value,
+          minutes: timeToMakeMinutesInputElement.value,
+        },
+        difficulty: difficultyInputElement.value,
+        rating: 5,
+        ingredients: ingredientsToAdd,
+        directions: directionsInputElement.value.split("\n"),
+      };
 
-        
-        await SendRecipe(newRecipe, imageInputElement.files[0]);
-        const recipeId = await GetRecipeId(newRecipe.title);
-        window.location.href = `http://127.0.0.1:5500/html/recipe.html?id=${recipeId}`;
+      await SendRecipe(newRecipe, imageInputElement.files[0]);
+      const recipeId = await GetRecipeId(newRecipe.title);
+      window.location.href = `http://127.0.0.1:5500/html/recipe.html?id=${recipeId}`;
     }
   });
 };
@@ -170,3 +181,4 @@ const generateIngredientElements = () => {
 
 addEventListeners();
 generateIngredientElements();
+await GetPhoto("Screenshot-2024-08-26-221707.png");

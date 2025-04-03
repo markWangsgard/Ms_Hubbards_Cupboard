@@ -1,5 +1,7 @@
+using System.Reflection;
 using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
+using System.Drawing;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.VisualBasic;
 
@@ -59,9 +61,9 @@ app.MapGet("/recipes/{id}", (int id) =>
 {
     return convertDifficulty().FindLast((recipe) => recipe.Id == id);
 });
-app.MapGet("/recipes/id", ([FromQuery] string title) => 
+app.MapGet("/recipes/id", ([FromQuery] string title) =>
 {
-    return recipeDatabase.Find(recipe => recipe.Title == title).Id;
+    return recipeDatabase.FindLastIndex(recipe => recipe.Title == title);
 });
 app.MapPost("/rating/{id}/{rating}", (int id, int rating) =>
 {
@@ -89,19 +91,33 @@ app.MapPost("/newRecipe/", (RecipeWithDifficultyInInt recipeObject) =>
     // var recipeObject = JsonSerializer.Deserialize<Recipe>(recipe);
     recipeDatabase.Add(recipe);
     recipe.Id = recipeDatabase.IndexOf(recipe);
-    Console.WriteLine($"new Id: {recipe.Id}");
     saveRecipes();
 });
 app.MapPost("/newRecipe/photo/{id}", async (int id, IFormFile photo) =>
 {
-    Console.WriteLine(id);
-    Console.WriteLine(photo);
     string path = $"./images/{photo.FileName}";
-    using (var stream = System.IO.File.Create(path))
+    using (var stream = File.Create(path))
     {
         await photo.CopyToAsync(stream);
     }
+    Recipe recipe = recipeDatabase.Find(recipe => recipe.Id == id);
+    recipe.PhotoURL = path;
+
 }).DisableAntiforgery();
+
+app.MapGet("/photo/{fileName}", (string fileName) =>
+{
+    // string path = $"./images/{fileName}";
+    foreach (var file in Directory.GetFiles($"./images"))
+    {
+        using (FileStream fs = File.Open(file, FileMode.Open))
+        {
+            return fs;
+
+        }
+    }
+    return path;
+});
 
 app.Run();
 

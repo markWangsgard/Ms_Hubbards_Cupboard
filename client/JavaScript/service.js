@@ -50,6 +50,7 @@ export const SendRecipe = async (recipe, photo) => {
   })
 
   const newRecipeID = await GetRecipeId(recipe.title);
+  console.log(newRecipeID);
   await SendPhoto(photo, newRecipeID);
 }
 export const SendPhoto = async (photo, id) => {
@@ -61,3 +62,11 @@ export const SendPhoto = async (photo, id) => {
     body: formData,
   });
 };
+
+export const GetPhoto = async (path) => {
+  const response = await fetch(`${url}/photo/${path}`);
+  const object = await response.blob();
+  const objectURL = URL.createObjectURL(object);
+  console.log(objectURL);
+  // return object;
+}
