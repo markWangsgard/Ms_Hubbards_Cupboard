@@ -89,11 +89,18 @@ app.MapPost("/newRecipe/", (RecipeWithDifficultyInInt recipeObject) =>
     // var recipeObject = JsonSerializer.Deserialize<Recipe>(recipe);
     recipeDatabase.Add(recipe);
     recipe.Id = recipeDatabase.IndexOf(recipe);
+    Console.WriteLine($"new Id: {recipe.Id}");
+    saveRecipes();
 });
-app.MapPost("/newRecipe/photo/{id}", (int id, IFormFile photo) =>
+app.MapPost("/newRecipe/photo/{id}", async (int id, IFormFile photo) =>
 {
     Console.WriteLine(id);
-    Console.WriteLine(photo.FileName);
+    Console.WriteLine(photo);
+    string path = $"./images/{photo.FileName}";
+    using (var stream = System.IO.File.Create(path))
+    {
+        await photo.CopyToAsync(stream);
+    }
 }).DisableAntiforgery();
 
 app.Run();
