@@ -1,13 +1,12 @@
-import { GetPhoto, GetRecipeId, SendRecipe } from "./service.js";
+import { GetPhoto, GetRecipeId, SendRecipe, uploadRecipe } from "./service.js";
 
 const addEventListeners = () => {
   const uploadImageElement = document.getElementById("image");
-    uploadImageElement.addEventListener("input", (e) => {
-        e.preventDefault();
-        const imageElement = document.getElementById("displayPhoto")
-        imageElement.src = uploadImageElement.files[0].webkitRelativePath;
-        console.log(uploadImageElement.files[0]);
-    })
+  uploadImageElement.addEventListener("input", (e) => {
+    e.preventDefault();
+    const imageElement = document.getElementById("displayPhoto");
+    imageElement.src = uploadImageElement.files[0].webkitRelativePath;
+  });
 
   const addIngredientButtonElement = document.getElementById(
     "add-ingredient-button"
@@ -120,22 +119,24 @@ const addEventListeners = () => {
       }
     } else {
       const newRecipe = {
-        id: -1,
-        title: titleInputElement.value,
-        creator: creatorInputElement.value,
-        photoURL: "",
-        servingSize: servingSizeInputElement.value,
-        duration: {
-          hours: timeToMakeHoursInputElement.value,
-          minutes: timeToMakeMinutesInputElement.value,
+        Id: -1,
+        Title: titleInputElement.value,
+        Creator: creatorInputElement.value,
+        PhotoURL: "",
+        ServingSize: servingSizeInputElement.value,
+        Duration: {
+          Hours: timeToMakeHoursInputElement.value,
+          Minutes: timeToMakeMinutesInputElement.value,
         },
-        difficulty: difficultyInputElement.value,
-        rating: 5,
-        ingredients: ingredientsToAdd,
-        directions: directionsInputElement.value.split("\n"),
+        Difficulty: difficultyInputElement.value,
+        Rating: 5,
+        Ingredients: ingredientsToAdd,
+        Directions: directionsInputElement.value.split("\n"),
       };
 
-      await SendRecipe(newRecipe, imageInputElement.files[0]);
+      
+
+      await uploadRecipe(newRecipe, imageInputElement.files[0]);
       const recipeId = await GetRecipeId(newRecipe.title);
       window.location.href = `http://127.0.0.1:5500/html/recipe.html?id=${recipeId}`;
     }
@@ -173,7 +174,6 @@ const generateIngredientElements = () => {
       e.preventDefault();
       const index = ingredient.index;
       ingredientsToAdd.splice(index, 1);
-      console.log(ingredientsToAdd);
       generateIngredientElements();
     });
   });
@@ -181,4 +181,3 @@ const generateIngredientElements = () => {
 
 addEventListeners();
 generateIngredientElements();
-await GetPhoto("Screenshot-2024-08-26-221707.png");

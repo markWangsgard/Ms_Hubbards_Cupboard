@@ -39,6 +39,16 @@ export const SendRecipe = async (recipe, photo) => {
   });
 } */
 
+  export const uploadRecipe = async (recipe, photo) => {
+    const formData = new FormData();
+    formData.append("photo", photo);
+    formData.append("recipeJSON", JSON.stringify(recipe));
+    const response = await fetch(`${url}/newRecipe/upload`, {
+      body: formData,
+      method: "POST"
+    });
+  };
+
 export const SendRecipe = async (recipe, photo) => {
   const json = JSON.stringify(recipe);
   const response = await fetch(`${url}/newRecipe`, {
