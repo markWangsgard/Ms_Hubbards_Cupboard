@@ -63,7 +63,7 @@ app.MapGet("/recipes/{id}", (int id) =>
 });
 app.MapGet("/recipes/id", ([FromQuery] string title) =>
 {
-    return recipeDatabase.FindLastIndex(recipe => recipe.Title == title);
+    return recipeDatabase.FindLast(recipe => recipe.Title == title).Id;
 });
 app.MapPost("/rating/{id}/{rating}", (int id, int rating) =>
 {

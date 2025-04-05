@@ -1,4 +1,4 @@
-import { GetPhoto, GetRecipeId, SendRecipe, uploadRecipe } from "./service.js";
+import { GetPhotoURL, GetRecipeId, uploadRecipe } from "./service.js";
 
 const addEventListeners = () => {
   const uploadImageElement = document.getElementById("image");
@@ -134,11 +134,12 @@ const addEventListeners = () => {
         Directions: directionsInputElement.value.split("\n"),
       };
 
-      
 
-      await uploadRecipe(newRecipe, imageInputElement.files[0]);
-      const recipeId = await GetRecipeId(newRecipe.title);
-      window.location.href = `http://127.0.0.1:5500/html/recipe.html?id=${recipeId}`;
+        await uploadRecipe(newRecipe, imageInputElement.files[0]);
+
+        const recipeId = await GetRecipeId(titleInputElement.value);
+
+        window.location.href = `http://127.0.0.1:5500/html/recipe.html?id=${recipeId}`;
     }
   });
 };

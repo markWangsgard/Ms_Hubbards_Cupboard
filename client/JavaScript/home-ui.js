@@ -1,13 +1,14 @@
-import { getAllRecipes } from "./service.js";
+import { getAllRecipes, GetPhotoURL } from "./service.js";
 
-const generateCard = (recipe) => {
+const generateCard = async (recipe) => {
   const cardElement = document.createElement("div");
   cardElement.classList = "recipe-card";
   cardElement.id = "recipe" + recipe.id
 
   const recipeIconElement = document.createElement("figure");
     const imageElement = document.createElement("img");
-    imageElement.src = recipe.photoURL;
+    const photoURL = await GetPhotoURL(recipe.id);
+    imageElement.src = photoURL;
     imageElement.alt = recipe.title;
     const servingSizeElement = document.createElement("figcaption");
     servingSizeElement.textContent = "Serving Size: " + recipe.servingSize;
@@ -113,7 +114,8 @@ const newRecipe = {
 const allRecipesContainerElement = document.getElementById("all-recipes-container");
 
 const allRecipes = await getAllRecipes();
-allRecipes.forEach(recipe => {
-    allRecipesContainerElement.appendChild(generateCard(recipe));
+allRecipes.forEach(async recipe => {
+    const card = await generateCard(recipe)
+    allRecipesContainerElement.appendChild(card);
 });
 // allRecipesContainerElement.appendChild(generateCard(newRecipe));
