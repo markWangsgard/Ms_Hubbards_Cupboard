@@ -17,7 +17,7 @@
   },
   {
     "Id": 1,
-    "Title": "Hello",
+    "Title": "Boo",
     "Creator": "Mark",
     "PhotoURL": "http://localhost:5032/photo/pancakes.jpg",
     "ServingSize": 6,
@@ -41,7 +41,7 @@
     "Difficulty": 5,
     "Rating": 2.5,
     "Ingredients": [
-      { "Name": "Shredded Cheese", "Quantity": 1, "Unit": "Cup" },
+      { "Name": "Milk", "Quantity": 1, "Unit": "Cup" },
       { "Name": "Shredded Cheese", "Quantity": 1, "Unit": "Cup" },
       { "Name": "Shredded Cheese", "Quantity": 1, "Unit": "Cup" }
     ],

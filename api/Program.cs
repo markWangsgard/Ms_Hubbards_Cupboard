@@ -5,6 +5,7 @@ using System.Drawing;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.VisualBasic;
 using System.Text.Json.Serialization;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors();
@@ -53,9 +54,19 @@ List<RecipeWithDifficultyInInt> convertDifficulty()
 app.MapGet("/", () => "Hello World!");
 
 app.MapGet("/recipes", () => convertDifficulty());
-app.MapGet("/recipes/search", ([FromQuery] string title) =>
+app.MapGet("/recipes/search", ([FromQuery] string searchValue) =>
 {
-    return recipeDatabase.Where(r => r.Title.ToLower().Contains(title)).ToList();
+    return recipeDatabase.Where(r =>
+    {
+        StringBuilder ingredients = new StringBuilder();
+        foreach (var ingredient in r.Ingredients)
+        {
+            ingredients.Append(ingredient.Name);
+        }
+        string allInfo = r.Title + ingredients;
+        return allInfo.ToLower().Contains(searchValue);
+    }).ToList();
+
 });
 app.MapGet("/recipes/{id}", (int id) =>
 {
@@ -111,16 +122,16 @@ void saveRecipes()
 }
 public record struct Recipe
 {
-    public int Id {get; set;}
-public string Title {get; init;}
-public string Creator {get; init;}
-public string PhotoURL {get; set;}
-public int ServingSize {get; init;}
-public TimeToMake Duration {get; init;}
-public int Difficulty {get; init;}
-public double Rating {get; set;}
-public List<Ingredient> Ingredients {get; init;}
-public List<string> Directions {get; init;}
+    public int Id { get; set; }
+    public string Title { get; init; }
+    public string Creator { get; init; }
+    public string PhotoURL { get; set; }
+    public int ServingSize { get; init; }
+    public TimeToMake Duration { get; init; }
+    public int Difficulty { get; init; }
+    public double Rating { get; set; }
+    public List<Ingredient> Ingredients { get; init; }
+    public List<string> Directions { get; init; }
 }
 
 

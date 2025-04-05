@@ -8,6 +8,9 @@
 .hidden {
   visibility: hidden;
 }
+.remove {
+  display: none;
+}
 input {
   margin-bottom: 1em;
   background-color: white;

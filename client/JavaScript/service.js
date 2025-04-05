@@ -16,6 +16,11 @@ export const GetRecipeId = async (title) => {
   const object = await response.json();
   return object;
 };
+export const SearchRecipes = async (searchValue) => {
+  const response = await fetch(`${url}/recipes/search?searchValue=${searchValue}`);
+  const object = await response.json();
+  return object;
+}
 export const sendRating = async (rating, id) => {
   const response = await fetch(`${url}/rating/${id}/${rating}`, {
     body: JSON.stringify(rating),
