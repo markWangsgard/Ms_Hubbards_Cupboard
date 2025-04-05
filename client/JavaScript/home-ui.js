@@ -1,4 +1,4 @@
-import { getAllRecipes, GetPhotoURL } from "./service.js";
+import { getAllRecipes} from "./service.js";
 
 const generateCard = async (recipe) => {
   const cardElement = document.createElement("div");
@@ -7,8 +7,8 @@ const generateCard = async (recipe) => {
 
   const recipeIconElement = document.createElement("figure");
     const imageElement = document.createElement("img");
-    const photoURL = await GetPhotoURL(recipe.id);
-    imageElement.src = photoURL;
+    console.log(recipe.photoURL);
+    imageElement.src = recipe.photoURL;
     imageElement.alt = recipe.title;
     const servingSizeElement = document.createElement("figcaption");
     servingSizeElement.textContent = "Serving Size: " + recipe.servingSize;

@@ -35,10 +35,6 @@ export const sendRating = async (rating, id) => {
       method: "POST"
     });
   };
-  export const UploadRecipeAndReciveId = async (recipe, photo) => {
-    await uploadRecipe(recipe, photo);
-    return await GetRecipeId(recipe.title);
-  }
 
 export const SendPhoto = async (photo, id) => {
   const formData = new FormData();
@@ -49,8 +45,3 @@ export const SendPhoto = async (photo, id) => {
     body: formData,
   });
 };
-
-export const GetPhotoURL = async (id) => {
-  const recipe = await getRecipe(id);
-  return `${url}/photo/${recipe.photoURL}`;
-}
