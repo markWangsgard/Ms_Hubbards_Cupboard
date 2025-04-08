@@ -111,7 +111,6 @@ const newRecipe = {
 }
 
 const allRecipesContainerElement = document.getElementById("all-recipes-container");
-
 const allRecipes = await getAllRecipes();
 allRecipes.forEach(recipe => {
     allRecipesContainerElement.appendChild(generateCard(recipe));

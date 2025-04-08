@@ -102,21 +102,22 @@ app.MapPost("/newRecipe/photo/{id}", async (int id, IFormFile photo) =>
     }
     Recipe recipe = recipeDatabase.Find(recipe => recipe.Id == id);
     recipe.PhotoURL = path;
+    saveRecipes();
 
 }).DisableAntiforgery();
 
 app.MapGet("/photo/{fileName}", (string fileName) =>
 {
     // string path = $"./images/{fileName}";
-    foreach (var file in Directory.GetFiles($"./images"))
-    {
-        using (FileStream fs = File.Open(file, FileMode.Open))
-        {
-            return fs;
+    // foreach (var file in Directory.GetFiles($"./images"))
+    // {
+    //     using (FileStream fs = File.Open(file, FileMode.Open))
+    //     {
+    //         return fs;
 
-        }
-    }
-    return path;
+    //     }
+    // }
+    // return path;
 });
 
 app.Run();
