@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.Drawing;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.VisualBasic;
+using System.Text.Json.Serialization;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors();
@@ -41,7 +43,6 @@ List<RecipeWithDifficultyInInt> convertDifficulty()
     recipe.PhotoURL,
     recipe.ServingSize,
     recipe.Duration,
-    recipe.Difficulty.ToString(),
     (int)recipe.Difficulty,
     recipe.Rating,
     recipe.Ingredients,
@@ -53,9 +54,19 @@ List<RecipeWithDifficultyInInt> convertDifficulty()
 app.MapGet("/", () => "Hello World!");
 
 app.MapGet("/recipes", () => convertDifficulty());
-app.MapGet("/recipes/search", ([FromQuery] string title) =>
+app.MapGet("/recipes/search", ([FromQuery] string searchValue) =>
 {
-    return recipeDatabase.Where(r => r.Title.ToLower().Contains(title)).ToList();
+    return recipeDatabase.Where(r =>
+    {
+        StringBuilder ingredients = new StringBuilder();
+        foreach (var ingredient in r.Ingredients)
+        {
+            ingredients.Append(ingredient.Name);
+        }
+        string allInfo = r.Title + ingredients;
+        return allInfo.ToLower().Contains(searchValue);
+    }).ToList();
+
 });
 app.MapGet("/recipes/{id}", (int id) =>
 {
@@ -63,43 +74,35 @@ app.MapGet("/recipes/{id}", (int id) =>
 });
 app.MapGet("/recipes/id", ([FromQuery] string title) =>
 {
-    return recipeDatabase.FindLastIndex(recipe => recipe.Title == title);
+    return recipeDatabase.FindLast(recipe => recipe.Title == title).Id;
 });
 app.MapPost("/rating/{id}/{rating}", (int id, int rating) =>
 {
-    Recipe? currentRecipe = recipeDatabase.Find((Recipe recipe) =>
+    Recipe currentRecipe = recipeDatabase.Find((Recipe recipe) =>
     {
         return recipe.Id == id;
     });
     currentRecipe.Rating = (currentRecipe.Rating + rating) / 2;
     saveRecipes();
 });
-app.MapPost("/newRecipe/", (RecipeWithDifficultyInInt recipeObject) =>
+app.MapPost("/newRecipe/upload", ([FromForm] IFormFile photo, [FromForm] string recipeJSON) =>
 {
-    Recipe recipe = new(
-        recipeObject.Id,
-        recipeObject.Title,
-        recipeObject.Creator,
-        recipeObject.PhotoURL,
-        recipeObject.ServingSize,
-        recipeObject.Duration,
-        (RecipeDifficulty)recipeObject.Difficulty,
-        recipeObject.Rating,
-        recipeObject.Ingredients,
-        recipeObject.Directions
-    );
-    // var recipeObject = JsonSerializer.Deserialize<Recipe>(recipe);
-    recipeDatabase.Add(recipe);
-    recipe.Id = recipeDatabase.IndexOf(recipe);
-    saveRecipes();
-});
-app.MapPost("/newRecipe/photo/{id}", async (int id, IFormFile photo) =>
-{
-    string path = $"./images/{photo.FileName}";
+    Recipe newRecipe = JsonSerializer.Deserialize<Recipe>(recipeJSON, new JsonSerializerOptions
+    {
+        NumberHandling = JsonNumberHandling.AllowReadingFromString
+    });
+    int id = recipeDatabase.Count();
+    string fileName = id + $".{photo.FileName.Split(".")[1]}";
+    newRecipe.Id = id;
+    newRecipe.PhotoURL = $"http://localhost:5032/photo/{fileName}";
+    string path = $"./images/{fileName}";
+
     using (var stream = File.Create(path))
     {
-        await photo.CopyToAsync(stream);
+        photo.CopyTo(stream);
     }
+    recipeDatabase.Add(newRecipe);
+    saveRecipes();
     Recipe recipe = recipeDatabase.Find(recipe => recipe.Id == id);
     recipe.PhotoURL = path;
     saveRecipes();
@@ -108,6 +111,9 @@ app.MapPost("/newRecipe/photo/{id}", async (int id, IFormFile photo) =>
 
 app.MapGet("/photo/{fileName}", (string fileName) =>
 {
+    var path = $"./images/{fileName}";
+    var bytes = File.ReadAllBytes(path);
+    return Results.File(bytes, "image/*");
     // string path = $"./images/{fileName}";
     // foreach (var file in Directory.GetFiles($"./images"))
     // {
@@ -127,34 +133,20 @@ void saveRecipes()
     string json = JsonSerializer.Serialize(recipeDatabase);
     File.WriteAllText(fileName, json);
 }
-
-public class Recipe
+public record struct Recipe
 {
     public int Id { get; set; }
-    public string Title { get; set; }
-    public string Creator { get; set; }
+    public string Title { get; init; }
+    public string Creator { get; init; }
     public string PhotoURL { get; set; }
-    public int ServingSize { get; set; }
-    public TimeToMake Duration { get; set; }
-    public RecipeDifficulty Difficulty { get; set; }
+    public int ServingSize { get; init; }
+    public TimeToMake Duration { get; init; }
+    public int Difficulty { get; init; }
     public double Rating { get; set; }
-    public List<Ingredient> Ingredients { get; set; }
-    public List<string> Directions { get; set; }
-
-    public Recipe(int id, string title, string creator, string photoURL, int servingSize, TimeToMake duration, RecipeDifficulty difficulty, double rating, List<Ingredient> ingredients, List<string> directions)
-    {
-        this.Id = id;
-        this.Title = title;
-        this.Creator = creator;
-        this.PhotoURL = photoURL;
-        this.ServingSize = servingSize;
-        this.Duration = duration;
-        this.Difficulty = difficulty;
-        this.Rating = rating;
-        this.Ingredients = ingredients;
-        this.Directions = directions;
-    }
+    public List<Ingredient> Ingredients { get; init; }
+    public List<string> Directions { get; init; }
 }
+
 
 public record RecipeWithDifficultyInInt
 (
@@ -164,11 +156,11 @@ string Creator,
 string PhotoURL,
 int ServingSize,
 TimeToMake Duration,
-string DifficultyRating,
 int Difficulty,
 double Rating,
 List<Ingredient> Ingredients,
-List<string> Directions);
+List<string> Directions
+);
 public enum RecipeDifficulty { Easy = 1, Standard = 2, Medium = 3, Intermediate = 4, Hard = 5 }
 public record Ingredient(string Name, float Quantity, string Unit);
 public record TimeToMake(int hours, int minutes);
