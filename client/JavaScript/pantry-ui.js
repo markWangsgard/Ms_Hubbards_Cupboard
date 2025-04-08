@@ -63,6 +63,8 @@ const addAllEventListeners = () => {
       popupElement.classList.add("popup-hidden");
       //show icon
       addItemIconButtonElement.classList.remove("hidden");
+      //generate new cards
+      generateItemCards();
     }
   });
 
@@ -81,4 +83,33 @@ const addAllEventListeners = () => {
   });
 };
 
+const generateItemCards = () => {
+    const itemList = getAllItems();
+    const itemListContainerElement = document.getElementById("item-list");
+    itemListContainerElement.replaceChildren();
+    itemList.forEach((item) => {
+        const itemCardElement = document.createElement("div");
+        itemCardElement.classList = "item";
+
+        const nameElement = document.createElement("p");
+        nameElement.textContent = `${item.name}:`;
+
+        const quantityElement = document.createElement("p");
+        const quantityString = `${item.quantity} ${item.unit}`
+        quantityElement.textContent = quantityString;
+
+        const editButtonElement = document.createElement("img");
+        editButtonElement.src = "/images/edit-icon.svg";
+        editButtonElement.alt = "Edit Item";
+        editButtonElement.classList = "icon";
+
+        itemCardElement.appendChild(nameElement);
+        itemCardElement.appendChild(quantityElement);
+        itemCardElement.appendChild(editButtonElement);
+
+        itemListContainerElement.appendChild(itemCardElement);
+    });
+}
+
 addAllEventListeners();
+generateItemCards();

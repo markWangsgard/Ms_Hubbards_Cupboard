@@ -1,4 +1,4 @@
-localStorage.clear();
+// localStorage.clear();
 export const addItem = (item) => {
     const itemList = [];
     if (!(localStorage.getItem("item-list") == null || localStorage.getItem("item-list") == "")) {
