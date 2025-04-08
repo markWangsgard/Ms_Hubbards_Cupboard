@@ -1,4 +1,11 @@
-import { getAllItems, addItem, removeItem } from "./domain.js";
+import { getAllItems, addItem, removeItem, getItem } from "./domain.js";
+
+// const allowDrop = (e)=> {
+//   e.preventDefault();
+// };
+// const drag = (e, itemName) => {
+//   e.dataTransfer.sendData("text", itemName);
+// }
 
 const addAllEventListeners = () => {
   const addItemIconButtonElement = document.getElementById("add-item-icon");
@@ -81,6 +88,18 @@ const addAllEventListeners = () => {
     //show icon
     addItemIconButtonElement.classList.remove("hidden");
   });
+
+  const deleteButtonElement = document.getElementById("delete-item-icon");
+  // deleteButtonElement.addEventListener("dragover", (e) => {
+  //   allowDrop(e);
+  // });
+  // deleteButtonElement.addEventListener("drop", (e) => {
+  //   e.preventDefault();
+  //   const itemName = e.dataTransfer.getData("text");
+  //   const itemToDelete = getItem(itemName);
+  //   removeItem(itemToDelete);
+  //   generateItemCards();
+  // })
 };
 
 const generateItemCards = () => {
@@ -90,6 +109,11 @@ const generateItemCards = () => {
     itemList.forEach((item) => {
         const itemCardElement = document.createElement("div");
         itemCardElement.classList = "item";
+        // itemCardElement.draggable = true;
+        // itemCardElement.addEventListener("dragstart", (e) => {
+        //   e.preventDefault();
+        //   drag(e, item.name);
+        // })
 
         const nameElement = document.createElement("p");
         nameElement.textContent = `${item.name}:`;
@@ -113,7 +137,6 @@ const generateItemCards = () => {
           e.preventDefault();
           removeItem(item);
           generateItemCards();
-          console.log("My name is bob");
         })
     });
 }

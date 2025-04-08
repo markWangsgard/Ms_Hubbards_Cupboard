@@ -29,8 +29,8 @@
           <p>quantity</p>
           <img src="/images/edit-icon.svg" alt="" class="icon" />
         </div>
-    </section>
-    <section id="add-item" class="popup-hidden">
+      </section>
+      <section id="add-item" class="popup-hidden">
         <form id="form">
           <div>
             <label for="name">Name</label>
@@ -45,8 +45,10 @@
               id="quantity"
               placeholder="3"
             />
-        </div>
-          <p class="error remove" id="error-quantity">Please enter a quantity</p>
+          </div>
+          <p class="error remove" id="error-quantity">
+            Please enter a quantity
+          </p>
           <div>
             <label for="units">Units</label>
             <select name="units" id="units">
@@ -60,18 +62,25 @@
               <option value="Count">Count (example: eggs)</option>
             </select>
           </div>
-            <p class="error remove" id="error-units">Please select a unit</p>
+          <p class="error remove" id="error-units">Please select a unit</p>
           <div>
             <button id="cancel-button">Cancel</button>
-            <input id="add-item-button" type="submit" value="Add Ingredient" class="button" />
+            <input
+              id="add-item-button"
+              type="submit"
+              value="Add Ingredient"
+              class="button"
+            />
           </div>
         </form>
       </section>
       <div id="add-item-icon" class="button">
-        <img
-          src="/images/add-recipe-icon.svg"
-          alt="Add Ingredient"
-        />
+        <img src="/images/add-recipe-icon.svg" alt="Add Item" />
+      </div>
+      <div id="delete-item-icon">
+        <div class="button">
+          <img src="/images/delete-icon.svg" alt="Delete Item" />
+        </div>
       </div>
     </main>
     <footer id="footer"></footer>
