@@ -29,138 +29,14 @@
           <p>quantity</p>
           <img src="/images/edit-icon.svg" alt="" class="icon" />
         </div>
-        <div class="item">
-          <p>Hello</p>
-          <p>quantity</p>
-          <img src="/images/edit-icon.svg" alt="" class="icon" />
-        </div>
-        <div class="item">
-          <p>Hello</p>
-          <p>quantity</p>
-          <img src="/images/edit-icon.svg" alt="" class="icon" />
-        </div>
-        <div class="item">
-          <p>Hello</p>
-          <p>quantity</p>
-          <img src="/images/edit-icon.svg" alt="" class="icon" />
-        </div>
-        <div class="item">
-          <p>Hello</p>
-          <p>quantity</p>
-          <img src="/images/edit-icon.svg" alt="" class="icon" />
-        </div>
-        <div class="item">
-          <p>Hello</p>
-          <p>quantity</p>
-          <img src="/images/edit-icon.svg" alt="" class="icon" />
-        </div>
-        <div class="item">
-          <p>Hello</p>
-          <p>quantity</p>
-          <img src="/images/edit-icon.svg" alt="" class="icon" />
-        </div>
-        <div class="item">
-          <p>Hello</p>
-          <p>quantity</p>
-          <img src="/images/edit-icon.svg" alt="" class="icon" />
-        </div>
-        <div class="item">
-          <p>Hello</p>
-          <p>quantity</p>
-          <img src="/images/edit-icon.svg" alt="" class="icon" />
-        </div>
-        <div class="item">
-          <p>Hello</p>
-          <p>quantity</p>
-          <img src="/images/edit-icon.svg" alt="" class="icon" />
-        </div>
-        <div class="item">
-          <p>Hello</p>
-          <p>quantity</p>
-          <img src="/images/edit-icon.svg" alt="" class="icon" />
-        </div>
-        <div class="item">
-          <p>Hello</p>
-          <p>quantity</p>
-          <img src="/images/edit-icon.svg" alt="" class="icon" />
-        </div>
-        <div class="item">
-          <p>Hello</p>
-          <p>quantity</p>
-          <img src="/images/edit-icon.svg" alt="" class="icon" />
-        </div>
-        <div class="item">
-          <p>Hello</p>
-          <p>quantity</p>
-          <img src="/images/edit-icon.svg" alt="" class="icon" />
-        </div>
-        <div class="item">
-          <p>Hello</p>
-          <p>quantity</p>
-          <img src="/images/edit-icon.svg" alt="" class="icon" />
-        </div>
-        <div class="item">
-          <p>Hello</p>
-          <p>quantity</p>
-          <img src="/images/edit-icon.svg" alt="" class="icon" />
-        </div>
-        <div class="item">
-          <p>Hello</p>
-          <p>quantity</p>
-          <img src="/images/edit-icon.svg" alt="" class="icon" />
-        </div>
-        <div class="item">
-          <p>Hello</p>
-          <p>quantity</p>
-          <img src="/images/edit-icon.svg" alt="" class="icon" />
-        </div>
-        <div class="item">
-          <p>Hello</p>
-          <p>quantity</p>
-          <img src="/images/edit-icon.svg" alt="" class="icon" />
-        </div>
-        <div class="item">
-          <p>Hello</p>
-          <p>quantity</p>
-          <img src="/images/edit-icon.svg" alt="" class="icon" />
-        </div>
-        <div class="item">
-          <p>Hello</p>
-          <p>quantity</p>
-          <img src="/images/edit-icon.svg" alt="" class="icon" />
-        </div>
-        <div class="item">
-          <p>Hello</p>
-          <p>quantity</p>
-          <img src="/images/edit-icon.svg" alt="" class="icon" />
-        </div>
-        <div class="item">
-          <p>Hello</p>
-          <p>quantity</p>
-          <img src="/images/edit-icon.svg" alt="" class="icon" />
-        </div>
-        <div class="item">
-          <p>Hello</p>
-          <p>quantity</p>
-          <img src="/images/edit-icon.svg" alt="" class="icon" />
-        </div>
-        <div class="item">
-          <p>Hello</p>
-          <p>quantity</p>
-          <img src="/images/edit-icon.svg" alt="" class="icon" />
-        </div>
-        <div class="item">
-          <p>Hello</p>
-          <p>quantity</p>
-          <img src="/images/edit-icon.svg" alt="" class="icon" />
-        </div>
-      </section>
-      <section id="add-item" class="popup-hidden">
+    </section>
+    <section id="add-item" class="popup-hidden">
         <form id="form">
           <div>
             <label for="name">Name</label>
             <input type="text" name="name" id="name" placeholder="Beef Bones" />
           </div>
+          <p class="error remove" id="error-name">Please enter a name</p>
           <div>
             <label for="quantity">Quantity</label>
             <input
@@ -169,7 +45,8 @@
               id="quantity"
               placeholder="3"
             />
-          </div>
+        </div>
+          <p class="error remove" id="error-quantity">Please enter a quantity</p>
           <div>
             <label for="units">Units</label>
             <select name="units" id="units">
@@ -183,6 +60,7 @@
               <option value="Count">Count (example: eggs)</option>
             </select>
           </div>
+            <p class="error remove" id="error-units">Please select a unit</p>
           <div>
             <button id="cancel-button">Cancel</button>
             <input id="add-item-button" type="submit" value="Add Ingredient" class="button" />

@@ -6,6 +6,8 @@
 
   --button-background-color: #69392b;
   --button-text-color: #f1e2df;
+
+  --error-text-color: red;
 }
 body {
   margin: 0;
@@ -38,6 +40,14 @@ button {
 }
 .remove {
   display: none;
+}
+.error {
+  color: var(--error-text-color);
+  margin: .25em;
+  text-align: center;
+  width: 15em;
+  margin-left: auto;
+  margin-right: auto;
 }
 input:not(#image, [type="submit"]),
 select,

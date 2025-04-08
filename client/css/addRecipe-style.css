@@ -1,16 +1,8 @@
 :root {
   --button-background-color: #69392b;
   --card-background-color: #f7f7f7;
-  --error-text-color: red;
 }
-.error {
-    color: var(--error-text-color);
-    margin: .25em;
-    text-align: center;
-    width: 15em;
-    margin-left: auto;
-    margin-right: auto;
-}
+
 body {
   width: 100%;
 }
