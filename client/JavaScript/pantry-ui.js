@@ -1,4 +1,4 @@
-import { getAllItems, addItem } from "./domain.js";
+import { getAllItems, addItem, removeItem } from "./domain.js";
 
 const addAllEventListeners = () => {
   const addItemIconButtonElement = document.getElementById("add-item-icon");
@@ -108,6 +108,13 @@ const generateItemCards = () => {
         itemCardElement.appendChild(editButtonElement);
 
         itemListContainerElement.appendChild(itemCardElement);
+
+        editButtonElement.addEventListener("click", (e) => {
+          e.preventDefault();
+          removeItem(item);
+          generateItemCards();
+          console.log("My name is bob");
+        })
     });
 }
 
