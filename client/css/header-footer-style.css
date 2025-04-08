@@ -3,6 +3,9 @@
   --nav-background-color: #45261c;
   --header-text-color: #f1e2df;
   --page-background-color: #ffb22c;
+
+  --button-background-color: #69392b;
+  --button-text-color: #f1e2df;
 }
 body {
   margin: 0;
@@ -13,24 +16,45 @@ body {
   flex-direction: column;
   align-items: center;
 }
+.button,
+button {
+  color: var(--card-background-color);
+  background-color: var(--button-background-color);
+  padding: 0.5em;
+  border-radius: 1em;
+}
 .icon {
   height: 20px;
 }
 .large-icon {
   height: 30px;
 }
-.star {
+/* .star { */
   /* filter: contrast(80%); */
   /* filter: saturate(50%); */
+/* } */
+.hidden {
+  visibility: hidden;
+}
+.remove {
+  display: none;
+}
+input:not(#image, [type="submit"]),
+select,
+textarea {
+  padding: 0.25em;
+  border-radius: 0.5em;
+  border-style: solid;
+  border-color: black;
 }
 a {
   color: var(--header-text-color);
   text-decoration: none;
   background-color: var(--header-background-color);
-  padding: .5em;
-  border-radius: .5em;
+  padding: 0.5em;
+  border-radius: 0.5em;
   transition-property: transform;
-  transition: .5s;
+  transition: 0.5s;
 }
 a:hover {
   transform: scale(1.2);
@@ -40,8 +64,7 @@ nav {
   display: flex;
   justify-content: space-around;
   padding: 1em;
-  border-radius: .5em;
-  
+  border-radius: 0.5em;
 }
 header {
   background-color: var(--header-background-color);
@@ -50,8 +73,9 @@ header {
   /* min-height: max-content; */
   display: flex;
   flex-direction: column;
-  border-bottom-left-radius: .5em;
-  border-bottom-right-radius: .5em;
+  justify-content: center;
+  border-bottom-left-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
 
   div {
     display: flex;
@@ -94,12 +118,12 @@ footer {
     filter: invert();
   }
   p {
-    margin: .3em;
+    margin: 0.3em;
   }
 }
 /* mobile */
 @media screen and (max-width: 600px) {
-    .mobile-hidden {
+  .mobile-hidden {
     display: none;
   }
   header {
@@ -107,17 +131,16 @@ footer {
     border-bottom-left-radius: 1em;
     border-bottom-right-radius: 1em;
     img {
-    width: 40px;
-      }
+      width: 40px;
+    }
   }
   main {
     overflow-y: auto;
-
   }
 }
 /* desktop */
 @media screen and (min-width: 600px) {
-    .mobile-visible {
+  .mobile-visible {
     display: none;
   }
 }

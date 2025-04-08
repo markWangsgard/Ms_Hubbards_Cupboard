@@ -4,13 +4,6 @@
   --button-background-color: #69392b;
   --button-text-color: #f1e2df;
 }
-
-.hidden {
-  visibility: hidden;
-}
-.remove {
-  display: none;
-}
 input {
   margin-bottom: 1em;
   background-color: white;
