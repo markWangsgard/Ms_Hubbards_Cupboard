@@ -22,6 +22,9 @@ const addAllEventListeners = () => {
     //display popup
     const popupElement = document.getElementById("add-item");
     popupElement.classList.remove("popup-hidden");
+    // sets submit button to add item
+    const submitButtonElement = document.getElementById("add-item-button");
+    submitButtonElement.value = "Add Item";
   });
 
   const formElement = document.getElementById("form");
@@ -58,6 +61,7 @@ const addAllEventListeners = () => {
         unit: unitsInputElement.value,
       };
       addItem(newItem);
+      //Update item: removes old one
       //clears input
       nameInputElement.value = "";
       quantityInputElement.value = "";
@@ -145,11 +149,71 @@ const generateItemCards = () => {
 
     editButtonElement.addEventListener("click", (e) => {
       e.preventDefault();
-      removeItem(item);
-      generateItemCards();
+      console.log(item);
+      itemCardElement.replaceChildren();
+      const titleCardInputElement = document.createElement("input");
+      titleCardInputElement.value = item.name;
+
+      const quantityCardInputElement = document.createElement("input");
+      quantityCardInputElement.type = "number";
+      quantityCardInputElement.value = item.quantity;
+
+      const unitCardSelectElement = document.createElement("select");
+      const option1Element = document.createElement("option");
+      option1Element.value = "Cups";
+      option1Element.textContent = "Cup(s)";
+      const option2Element = document.createElement("option");
+      option2Element.value = "Tablespoons";
+      option2Element.textContent = "Tablespoon(s)";
+      const option3Element = document.createElement("option");
+      option3Element.value = "Teaspoons";
+      option3Element.textContent = "Teaspoon(s)";
+      const option4Element = document.createElement("option");
+      option4Element.value = "Pounds";
+      option4Element.textContent = "Pound(s)";
+      const option5Element = document.createElement("option");
+      option5Element.value = "Ounces";
+      option5Element.textContent = "Ounce(s)";
+      const option6Element = document.createElement("option");
+      option6Element.value = "Ounce-can";
+      option6Element.textContent = "Ounce(s) Can)";
+      const option7Element = document.createElement("option");
+      option7Element.value = "Count";
+      option7Element.textContent = "Count (example: eggs)";
+      unitCardSelectElement.appendChild(option1Element);
+      unitCardSelectElement.appendChild(option2Element);
+      unitCardSelectElement.appendChild(option3Element);
+      unitCardSelectElement.appendChild(option4Element);
+      unitCardSelectElement.appendChild(option5Element);
+      unitCardSelectElement.appendChild(option6Element);
+      unitCardSelectElement.appendChild(option7Element);
+      unitCardSelectElement.value = item.unit;
+
+      const saveButtonIconElement = document.createElement("img");
+      saveButtonIconElement.src = "/images/check-icon.svg";
+      saveButtonIconElement.alt = "Save Item";
+      saveButtonIconElement.classList = "icon";
+
+      itemCardElement.appendChild(titleCardInputElement);
+      itemCardElement.appendChild(quantityCardInputElement);
+      itemCardElement.appendChild(unitCardSelectElement);
+      itemCardElement.appendChild(saveButtonIconElement);
+
+      saveButtonIconElement.addEventListener("click", (e) => {
+        e.preventDefault();
+        const newItem = {
+            name: titleCardInputElement.value,
+            quantity: quantityCardInputElement.value,
+            unit: unitCardSelectElement.value,
+          };
+          removeItem(item);
+          addItem(newItem);
+          generateItemCards();
+      })
     });
   });
 };
+const editItem = (itemCardElement, item) => {};
 
 addAllEventListeners();
 generateItemCards();
