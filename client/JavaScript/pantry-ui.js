@@ -149,7 +149,7 @@ const generateItemCards = () => {
 
     editButtonElement.addEventListener("click", (e) => {
       e.preventDefault();
-      console.log(item);
+      itemCardElement.draggable = false;
       itemCardElement.replaceChildren();
       const titleCardInputElement = document.createElement("input");
       titleCardInputElement.value = item.name;
