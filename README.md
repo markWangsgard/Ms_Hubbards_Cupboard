@@ -7,6 +7,8 @@ It would be a site that you can filter recipes based on what you already have in
 
 You would be able to add/remove items from your pantry (kinda like a shopping list, but opposite! Not what you need, but what you have.)
 
+[link to color palet](https://colorhunt.co/palette/f7f7f7ffb22c854836000000)
+
 ## Needed Features
 ### API
 - Store recipes
