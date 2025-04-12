@@ -188,11 +188,22 @@ const addAllEventListeners = () => {
   });
 };
 
-const allRecipesContainerElement = document.getElementById(
-  "all-recipes-container"
-);
+const generatePopularRecipes = async () => {
+  const popularRecipesContainerElement = document.getElementById(
+    "popular-recipes-container"
+  );
+  popularRecipesContainerElement.replaceChildren();
+  const popularRecipes = await SearchRecipes("", "Popular");
+  popularRecipes.slice(0,5).forEach(async (recipe) => {
+    const card = await generateCard(recipe);
+    popularRecipesContainerElement.appendChild(card);
+  });
+};
 
 const generateAllRecipes = async () => {
+  const allRecipesContainerElement = document.getElementById(
+    "all-recipes-container"
+  );
   allRecipesContainerElement.replaceChildren();
   const allRecipes = await getAllRecipes();
   allRecipes.forEach(async (recipe) => {
@@ -238,5 +249,6 @@ const showSections = () => {
   quantityElement.classList.add("remove");
 };
 
+generatePopularRecipes();
 generateAllRecipes();
 addAllEventListeners();
