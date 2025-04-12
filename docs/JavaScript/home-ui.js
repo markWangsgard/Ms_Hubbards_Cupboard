@@ -48,7 +48,25 @@ const generateCard = async (recipe) => {
     difficultyContainerElement.appendChild(difficultyImageElement);
   }
   const difficultyWordElement = document.createElement("p");
-  difficultyWordElement.textContent = recipe.difficultyRating;
+  var difficultyText;
+  switch (recipe.difficulty) {
+    case 1:
+      difficultyText = "Easy";
+      break;
+    case 2:
+      difficultyText = "Standard";
+      break;
+    case 3:
+      difficultyText = "Medium";
+      break;
+    case 4:
+      difficultyText = "Intermediate";
+      break;
+    case 5:
+      difficultyText = "Hard";
+      break;
+  }
+  difficultyWordElement.textContent = difficultyText;
 
   const rateContainerElement = document.createElement("div");
   const rating = Math.round(recipe.rating);
@@ -126,6 +144,21 @@ const addAllEventListeners = () => {
       popularSectionElement.classList.remove("remove");
       allRecipesTitleElement.classList.remove("remove");
       generateAllRecipes();
+    }
+  });
+
+  const filterElement = document.getElementById("filter");
+  filterElement.addEventListener("input", async (e) => {
+    if (filterElement.value === "all") {
+      await generateAllRecipes();
+    } else if (filterElement.value === "EasyFirst") {
+      allRecipesContainerElement.replaceChildren();
+      const allRecipes = await getAllRecipes();
+      allRecipes.sort((a, b) => a.difficulty - b.difficulty);
+      allRecipes.forEach(async (recipe) => {
+        const card = await generateCard(recipe);
+        allRecipesContainerElement.appendChild(card);
+      });
     }
   });
 };
