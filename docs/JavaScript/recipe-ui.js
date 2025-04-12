@@ -71,7 +71,7 @@ const setupPage = async () => {
     rateContainerElement.appendChild(ratingImageElement);
   }
   const ratingNumberElement = document.createElement("p");
-  ratingNumberElement.textContent = Math.round(recipe.rating);
+  ratingNumberElement.textContent = recipe.rating.toFixed(1);
   rateContainerElement.appendChild(ratingNumberElement);
   //ingredients
   const ingredientsListElement = document.getElementById("ingredient-list");
