@@ -1,4 +1,3 @@
-import { getTempPhoto, storeTempPhoto } from "./domain.js";
 import { GetRecipeId, uploadRecipe } from "./service.js";
 
 const addEventListeners = () => {

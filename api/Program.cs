@@ -60,11 +60,11 @@ app.MapGet("/recipes/search", ([FromQuery] string searchValue, [FromQuery] strin
 
     if (filterValue == "EasyFirst")
     {
-        newList.Sort((a, b) => a.Difficulty - b.Difficulty);
+        newList.OrderBy(r => r.Difficulty);
     }
     else if (filterValue == "HardFirst")
     {
-        newList.Sort((a, b) => b.Difficulty - a.Difficulty);
+        newList.OrderByDescending(r => r.Difficulty);
     }
     else if (filterValue.Contains("ServingSize"))
     {
@@ -73,6 +73,10 @@ app.MapGet("/recipes/search", ([FromQuery] string searchValue, [FromQuery] strin
         {
             newList = newList.FindAll((r) => r.ServingSize == int.Parse(servingSizeAmount));
         }
+    }
+    else if (filterValue == "Popular")
+    {
+        newList.OrderBy(r => r.Rating);
     }
     //todo sort Favorites
 

@@ -115,9 +115,11 @@ const generateItemCards = () => {
   const itemList = getAllItems();
   const itemListContainerElement = document.getElementById("item-list");
   itemListContainerElement.replaceChildren();
-  itemList.forEach((item) => {
+  for (var i = 0; i < itemList.length; i++) {
+    const item = itemList[i];
     const itemCardElement = document.createElement("div");
     itemCardElement.classList = "item";
+    itemCardElement.id = `item${i}`;
     itemCardElement.setAttribute("draggable", true);
     itemCardElement.addEventListener("drag", (e) => {
       e.preventDefault();
@@ -202,18 +204,19 @@ const generateItemCards = () => {
       saveButtonIconElement.addEventListener("click", (e) => {
         e.preventDefault();
         const newItem = {
-            name: titleCardInputElement.value,
-            quantity: quantityCardInputElement.value,
-            unit: unitCardSelectElement.value,
-          };
-          removeItem(item);
-          addItem(newItem);
-          generateItemCards();
-      })
+          name: titleCardInputElement.value,
+          quantity: quantityCardInputElement.value,
+          unit: unitCardSelectElement.value,
+        };
+        const id = itemCardElement.id;
+        const index = id.slice(4);
+        removeItem(index);
+        addItem(newItem);
+        generateItemCards();
+      });
     });
-  });
+  }
 };
-const editItem = (itemCardElement, item) => {};
 
 addAllEventListeners();
 generateItemCards();

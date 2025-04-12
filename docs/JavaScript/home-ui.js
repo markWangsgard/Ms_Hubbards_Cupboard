@@ -131,7 +131,6 @@ const addAllEventListeners = () => {
     const servingSizeValue = servingSizeElement.value;
 
     hideSections();
-    console.log(filterValue);
     if (filterValue === "ServingSize") {
       servingSizeElement.classList.remove("remove");
       generateSearchedRecipes(searchValue, filterValue + servingSizeValue);

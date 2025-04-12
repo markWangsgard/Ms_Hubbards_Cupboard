@@ -109,10 +109,15 @@
     bottom: 9em;
   }
   #item-list {
-    flex-direction: column;
+    /* flex-direction: column; */
+    justify-content: space-evenly;
     div {
-      margin-bottom: 1em;
+      /* margin-bottom: 1em; */
     }
+  }
+  .item {
+    display: flex;
+    flex-direction: column;
   }
 }
 /* desktop */
