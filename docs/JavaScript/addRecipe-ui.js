@@ -1,11 +1,27 @@
-import { GetPhotoURL, GetRecipeId, uploadRecipe } from "./service.js";
+import { getTempPhoto, storeTempPhoto } from "./domain.js";
+import { GetRecipeId, uploadRecipe } from "./service.js";
 
 const addEventListeners = () => {
   const uploadImageElement = document.getElementById("image");
-  uploadImageElement.addEventListener("input", (e) => {
+  uploadImageElement.addEventListener("change", (e) => {
     e.preventDefault();
-    const imageElement = document.getElementById("displayPhoto");
-    imageElement.src = uploadImageElement.files[0].webkitRelativePath;
+
+    const photo = uploadImageElement.files[0];
+    if (photo) {
+      //reads photo
+      const reader = new FileReader();
+
+      //when photo is loaded, set to src
+      reader.addEventListener("load", (e) => {
+        e.preventDefault();
+
+        const imageElement = document.getElementById("displayPhoto");
+        imageElement.src = e.target.result;
+      });
+
+      //loading img?
+      reader.readAsDataURL(photo);
+    }
   });
 
   const addIngredientButtonElement = document.getElementById(
@@ -134,12 +150,11 @@ const addEventListeners = () => {
         Directions: directionsInputElement.value.split("\n"),
       };
 
+      await uploadRecipe(newRecipe, imageInputElement.files[0]);
 
-        await uploadRecipe(newRecipe, imageInputElement.files[0]);
+      const recipeId = await GetRecipeId(titleInputElement.value);
 
-        const recipeId = await GetRecipeId(titleInputElement.value);
-
-        window.location.href = `./recipe.html?id=${recipeId}`;
+      window.location.href = `./recipe.html?id=${recipeId}`;
     }
   });
 };

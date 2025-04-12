@@ -1,4 +1,4 @@
-// localStorage.clear();
+
 export const addItem = (item) => {
   const itemList = [];
   if (
