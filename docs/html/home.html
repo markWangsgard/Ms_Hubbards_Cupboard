@@ -14,8 +14,18 @@
     <header id="header"></header>
     <main>
       <section id="search-bar-container">
-        <label for="search-bar" class="hidden">Search</label>
+        <label for="search-bar" class="remove">Search</label>
         <input type="search" id="search-bar" placeholder="Search Recipes" />
+        <label for="filter" class="remove">Filter</label>
+        <select name="filter" id="filter">
+          <option value="all" selected>All Recipes</option>
+          <option value="Favorites">Favorites</option>
+          <option value="ServingSize">Serving Size</option>
+          <option value="EasyFirst">Difficulty: Easy - Hard</option>
+          <option value="HardFirst">Difficulty: Hard - Easy</option>
+        </select>
+        <label for="ServingSizeQuantity" class="remove">Serving Size Quantity</label>
+        <input type="number" name="ServingSizeQuantity" id="ServingSizeQuantity" placeholder="Serving Size" min="1" class="remove">
       </section>
       <section id="continue-making-section">
         <h2>Continue Making</h2>

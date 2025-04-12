@@ -4,6 +4,21 @@
   --button-background-color: #69392b;
   --button-text-color: #f1e2df;
 }
+#search-bar-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  * {
+    margin: 1.5em;
+    margin-left: .5em;
+    margin-right: .5em;
+  }
+  #ServingSizeQuantity {
+    width: 7em;
+  }
+}
 input {
   margin-bottom: 1em;
   background-color: white;
@@ -113,7 +128,7 @@ section {
     display: none;
   }
   #search-bar {
-    width: 80%;
+    width: 50%;
   }
 }
 @media only screen and (min-width: 600px) {
@@ -131,5 +146,8 @@ section {
     button {
       display: none;
     }
+  }
+  #search-bar-container{
+    flex-direction: row;
   }
 }
