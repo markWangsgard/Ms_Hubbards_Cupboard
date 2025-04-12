@@ -3,11 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/header-footer-style.css" />
-    <link rel="stylesheet" href="/css/addRecipe-style.css" />
-    <script type="module" src="/JavaScript/header.js"></script>
-    <script type="module" src="/JavaScript/addRecipe-ui.js"></script>
-    <script type="module" src="/JavaScript/footer.js"></script>
+    <link rel="stylesheet" href="./css/header-footer-style.css" />
+    <link rel="stylesheet" href="./css/addRecipe-style.css" />
+    <script type="module" src="./JavaScript/header.js"></script>
+    <script type="module" src="./JavaScript/addRecipe-ui.js"></script>
+    <script type="module" src="./JavaScript/footer.js"></script>
     <title>Add Recipe</title>
   </head>
   <body>
@@ -19,7 +19,7 @@
             <label for="image"><h2>Image:</h2></label>
             <p class="error remove" id="error-image">Please upload an image. That way we know when we messed up.</p>
             <input type="file" id="image" name="image" accept="image/*" />
-            <img id="displayPhoto" src="/images/no-photo-default.svg" alt="default image" />
+            <img id="displayPhoto" src="../images/no-photo-default.svg" alt="default image" />
           </article>
           <article id="recipe-info-container">
             <h2>Recipe Info</h2>
@@ -138,10 +138,8 @@
             </label>
             <p>Please hit enter between each step</p>
             <textarea name="directions" id="directions"
-            placeholder="
-            In a large pot, add water...
-            Then add the bone...
-            "></textarea>
+            placeholder="In a large pot, add water...
+Then add the bone..."></textarea>
           </article>
         </section>
         <input type="submit" class="button"/>

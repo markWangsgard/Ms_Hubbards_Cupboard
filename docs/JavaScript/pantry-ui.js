@@ -137,7 +137,7 @@ const generateItemCards = () => {
     quantityElement.textContent = quantityString;
 
     const editButtonElement = document.createElement("img");
-    editButtonElement.src = "/images/edit-icon.svg";
+    editButtonElement.src = "./images/edit-icon.svg";
     editButtonElement.alt = "Edit Item";
     editButtonElement.classList = "icon";
 
@@ -190,7 +190,7 @@ const generateItemCards = () => {
       unitCardSelectElement.value = item.unit;
 
       const saveButtonIconElement = document.createElement("img");
-      saveButtonIconElement.src = "/images/check-icon.svg";
+      saveButtonIconElement.src = "./images/check-icon.svg";
       saveButtonIconElement.alt = "Save Item";
       saveButtonIconElement.classList = "icon";
 
