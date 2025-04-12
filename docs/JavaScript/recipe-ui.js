@@ -37,14 +37,14 @@ const setupPage = async () => {
   difficultyContainerElement.replaceChildren();
   for (var i = 0; i < recipe.difficulty; i++) {
     const difficultyImageElement = document.createElement("img");
-    difficultyImageElement.src = "./images/chef-hat-solid.svg";
+    difficultyImageElement.src = "../images/chef-hat-solid.svg";
     difficultyImageElement.alt = "Solid Chef Hat";
     difficultyImageElement.classList = "large-icon";
     difficultyContainerElement.appendChild(difficultyImageElement);
   }
   for (var i = 0; i < 5 - recipe.difficulty; i++) {
     const difficultyImageElement = document.createElement("img");
-    difficultyImageElement.src = "./images/chef-hat-hollow.svg";
+    difficultyImageElement.src = "../images/chef-hat-hollow.svg";
     difficultyImageElement.alt = "Hollow Chef Hat";
     difficultyImageElement.classList = "large-icon";
     difficultyContainerElement.appendChild(difficultyImageElement);
@@ -58,14 +58,14 @@ const setupPage = async () => {
   const rating = Math.round(recipe.rating,1);
   for (var i = 0; i < rating; i++) {
     const ratingImageElement = document.createElement("img");
-    ratingImageElement.src = "./images/yellow-star.svg";
+    ratingImageElement.src = "../images/yellow-star.svg";
     ratingImageElement.alt = "yellow star";
     ratingImageElement.classList = "large-icon star";
     rateContainerElement.appendChild(ratingImageElement);
   }
   for (var i = 0; i < 5 - rating; i++) {
     const ratingImageElement = document.createElement("img");
-    ratingImageElement.src = "./images/empty-star.svg";
+    ratingImageElement.src = "../images/empty-star.svg";
     ratingImageElement.alt = "empty star";
     ratingImageElement.classList = "large-icon star";
     rateContainerElement.appendChild(ratingImageElement);
@@ -103,63 +103,63 @@ const setUpEventListeners = () => {
   const star5Element = document.getElementById(`star-5`);
   star1Element.addEventListener("mouseover", (e) => {
     e.preventDefault();
-    star1Element.src = "./images/yellow-star.svg";
+    star1Element.src = "../images/yellow-star.svg";
   });
   star1Element.addEventListener("mouseout", (e) => {
     e.preventDefault();
-    star1Element.src = "./images/empty-star.svg";
+    star1Element.src = "../images/empty-star.svg";
   });
   star2Element.addEventListener("mouseover", (e) => {
     e.preventDefault();
-    star1Element.src = "./images/yellow-star.svg";
-    star2Element.src = "./images/yellow-star.svg";
+    star1Element.src = "../images/yellow-star.svg";
+    star2Element.src = "../images/yellow-star.svg";
   });
   star2Element.addEventListener("mouseout", (e) => {
     e.preventDefault();
-    star1Element.src = "./images/empty-star.svg";
-    star2Element.src = "./images/empty-star.svg";
+    star1Element.src = "../images/empty-star.svg";
+    star2Element.src = "../images/empty-star.svg";
   });
   star3Element.addEventListener("mouseover", (e) => {
     e.preventDefault();
-    star1Element.src = "./images/yellow-star.svg";
-    star2Element.src = "./images/yellow-star.svg";
-    star3Element.src = "./images/yellow-star.svg";
+    star1Element.src = "../images/yellow-star.svg";
+    star2Element.src = "../images/yellow-star.svg";
+    star3Element.src = "../images/yellow-star.svg";
   });
   star3Element.addEventListener("mouseout", (e) => {
     e.preventDefault();
-    star1Element.src = "./images/empty-star.svg";
-    star2Element.src = "./images/empty-star.svg";
-    star3Element.src = "./images/empty-star.svg";
+    star1Element.src = "../images/empty-star.svg";
+    star2Element.src = "../images/empty-star.svg";
+    star3Element.src = "../images/empty-star.svg";
   });
   star4Element.addEventListener("mouseover", (e) => {
     e.preventDefault();
-    star1Element.src = "./images/yellow-star.svg";
-    star2Element.src = "./images/yellow-star.svg";
-    star3Element.src = "./images/yellow-star.svg";
-    star4Element.src = "./images/yellow-star.svg";
+    star1Element.src = "../images/yellow-star.svg";
+    star2Element.src = "../images/yellow-star.svg";
+    star3Element.src = "../images/yellow-star.svg";
+    star4Element.src = "../images/yellow-star.svg";
   });
   star4Element.addEventListener("mouseout", (e) => {
     e.preventDefault();
-    star1Element.src = "./images/empty-star.svg";
-    star2Element.src = "./images/empty-star.svg";
-    star3Element.src = "./images/empty-star.svg";
-    star4Element.src = "./images/empty-star.svg";
+    star1Element.src = "../images/empty-star.svg";
+    star2Element.src = "../images/empty-star.svg";
+    star3Element.src = "../images/empty-star.svg";
+    star4Element.src = "../images/empty-star.svg";
   });
   star5Element.addEventListener("mouseover", (e) => {
     e.preventDefault();
-    star1Element.src = "./images/yellow-star.svg";
-    star2Element.src = "./images/yellow-star.svg";
-    star3Element.src = "./images/yellow-star.svg";
-    star4Element.src = "./images/yellow-star.svg";
-    star5Element.src = "./images/yellow-star.svg";
+    star1Element.src = "../images/yellow-star.svg";
+    star2Element.src = "../images/yellow-star.svg";
+    star3Element.src = "../images/yellow-star.svg";
+    star4Element.src = "../images/yellow-star.svg";
+    star5Element.src = "../images/yellow-star.svg";
   });
   star5Element.addEventListener("mouseout", (e) => {
     e.preventDefault();
-    star1Element.src = "./images/empty-star.svg";
-    star2Element.src = "./images/empty-star.svg";
-    star3Element.src = "./images/empty-star.svg";
-    star4Element.src = "./images/empty-star.svg";
-    star5Element.src = "./images/empty-star.svg";
+    star1Element.src = "../images/empty-star.svg";
+    star2Element.src = "../images/empty-star.svg";
+    star3Element.src = "../images/empty-star.svg";
+    star4Element.src = "../images/empty-star.svg";
+    star5Element.src = "../images/empty-star.svg";
   });
 
   star1Element.addEventListener("click", async () => {

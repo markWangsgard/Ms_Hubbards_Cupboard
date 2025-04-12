@@ -163,7 +163,7 @@ const generateIngredientElements = () => {
     const ingredientStringElement = document.createElement("p");
     ingredientStringElement.textContent = `${ingredient.quantity} ${ingredient.unit} ${ingredient.name}`;
     const deleteIconElement = document.createElement("img");
-    deleteIconElement.src = "./images/delete-icon.svg";
+    deleteIconElement.src = "../images/delete-icon.svg";
     deleteIconElement.alt = `delete ${ingredient.name}`;
     deleteIconElement.classList = "icon";
 

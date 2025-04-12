@@ -20,7 +20,7 @@ main {
   }
 
   #recipe-photo {
-    background-image: url("/images/pancakes.jpg");
+    background-image: url("../images/pancakes.jpg");
     background-size: cover;
     background-position: center;
     border-radius: 2em;    

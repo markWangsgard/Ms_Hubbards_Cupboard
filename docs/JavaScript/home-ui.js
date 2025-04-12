@@ -35,14 +35,14 @@ const generateCard = async (recipe) => {
   const difficultyContainerElement = document.createElement("div");
   for (var i = 0; i < recipe.difficulty; i++) {
     const difficultyImageElement = document.createElement("img");
-    difficultyImageElement.src = "./images/chef-hat-solid.svg";
+    difficultyImageElement.src = "../images/chef-hat-solid.svg";
     difficultyImageElement.alt = "Solid Chef Hat";
     difficultyImageElement.classList = "icon";
     difficultyContainerElement.appendChild(difficultyImageElement);
   }
   for (var i = 0; i < 5 - recipe.difficulty; i++) {
     const difficultyImageElement = document.createElement("img");
-    difficultyImageElement.src = "./images/chef-hat-hollow.svg";
+    difficultyImageElement.src = "../images/chef-hat-hollow.svg";
     difficultyImageElement.alt = "Hollow Chef Hat";
     difficultyImageElement.classList = "icon";
     difficultyContainerElement.appendChild(difficultyImageElement);
@@ -54,14 +54,14 @@ const generateCard = async (recipe) => {
   const rating = Math.round(recipe.rating);
   for (var i = 0; i < rating; i++) {
     const ratingImageElement = document.createElement("img");
-    ratingImageElement.src = "./images/yellow-star.svg";
+    ratingImageElement.src = "../images/yellow-star.svg";
     ratingImageElement.alt = "yellow star";
     ratingImageElement.classList = "icon star";
     rateContainerElement.appendChild(ratingImageElement);
   }
   for (var i = 0; i < 5 - rating; i++) {
     const ratingImageElement = document.createElement("img");
-    ratingImageElement.src = "./images/empty-star.svg";
+    ratingImageElement.src = "../images/empty-star.svg";
     ratingImageElement.alt = "empty star";
     ratingImageElement.classList = "icon star";
     rateContainerElement.appendChild(ratingImageElement);
@@ -71,7 +71,7 @@ const generateCard = async (recipe) => {
 
   // todo: Set if recipe is favorited
   const favoriteIconElement = document.createElement("img");
-  favoriteIconElement.src = "./images/solid-bookmark.svg";
+  favoriteIconElement.src = "../images/solid-bookmark.svg";
   favoriteIconElement.alt = "Favorited Recipe";
   favoriteIconElement.classList = "large-icon favorite-icon";
   const favoriteButtonElement = document.createElement("button");
