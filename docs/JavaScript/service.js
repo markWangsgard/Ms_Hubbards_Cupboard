@@ -16,8 +16,8 @@ export const GetRecipeId = async (title) => {
   const object = await response.json();
   return object;
 };
-export const SearchRecipes = async (searchValue) => {
-  const response = await fetch(`${url}/recipes/search?searchValue=${searchValue}`);
+export const SearchRecipes = async (searchValue, filterValue) => {
+  const response = await fetch(`${url}/recipes/search?searchValue=${searchValue}&filterValue=${filterValue}`);
   const object = await response.json();
   return object;
 }

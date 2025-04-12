@@ -86,7 +86,7 @@
     "PhotoURL": "http://localhost:5032/photo/pancakes.jpg",
     "ServingSize": 16,
     "Duration": { "hours": 5, "minutes": 30 },
-    "Difficulty": 0,
+    "Difficulty": 1,
     "Rating": 4,
     "Ingredients": [
       { "Name": "Shredded Cheese", "Quantity": 1, "Unit": "Cup" },
@@ -113,8 +113,8 @@
   },
   {
     "Id": 7,
-    "Title": "Hello",
-    "Creator": "Mark",
+    "Title": "Boo!",
+    "Creator": "Mark Wangsgard",
     "PhotoURL": "http://localhost:5032/photo/pancakes.jpg",
     "ServingSize": 3,
     "Duration": { "hours": 1, "minutes": 12 },
@@ -278,7 +278,7 @@
     "PhotoURL": "http://localhost:5032/photo/pancakes.jpg",
     "ServingSize": 16,
     "Duration": { "hours": 2, "minutes": 12 },
-    "Difficulty": 0,
+    "Difficulty": 1,
     "Rating": 3,
     "Ingredients": [
       { "Name": "Shredded Cheese", "Quantity": 1, "Unit": "Cup" },

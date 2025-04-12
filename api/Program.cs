@@ -54,9 +54,29 @@ List<RecipeWithDifficultyInInt> convertDifficulty()
 app.MapGet("/", () => "Hello World!");
 
 app.MapGet("/recipes", () => convertDifficulty());
-app.MapGet("/recipes/search", ([FromQuery] string searchValue) =>
+app.MapGet("/recipes/search", ([FromQuery] string searchValue, [FromQuery] string filterValue) =>
 {
-    return recipeDatabase.Where(r =>
+    var newList = recipeDatabase;
+
+    if (filterValue == "EasyFirst")
+    {
+        newList.Sort((a, b) => a.Difficulty - b.Difficulty);
+    }
+    else if (filterValue == "HardFirst")
+    {
+        newList.Sort((a, b) => b.Difficulty - a.Difficulty);
+    }
+    else if (filterValue.Contains("ServingSize"))
+    {
+        string servingSizeAmount = filterValue.Remove(0, 11);
+        if (servingSizeAmount != "")
+        {
+            newList = newList.FindAll((r) => r.ServingSize == int.Parse(servingSizeAmount));
+        }
+    }
+    //todo sort Favorites
+
+    newList = newList.Where(r =>
     {
         StringBuilder ingredients = new StringBuilder();
         foreach (var ingredient in r.Ingredients)
@@ -66,6 +86,8 @@ app.MapGet("/recipes/search", ([FromQuery] string searchValue) =>
         string allInfo = r.Title + ingredients;
         return allInfo.ToLower().Contains(searchValue);
     }).ToList();
+    return newList;
+
 
 });
 app.MapGet("/recipes/{id}", (int id) =>
@@ -114,16 +136,6 @@ app.MapGet("/photo/{fileName}", (string fileName) =>
     var path = $"./images/{fileName}";
     var bytes = File.ReadAllBytes(path);
     return Results.File(bytes, "image/*");
-    // string path = $"./images/{fileName}";
-    // foreach (var file in Directory.GetFiles($"./images"))
-    // {
-    //     using (FileStream fs = File.Open(file, FileMode.Open))
-    //     {
-    //         return fs;
-
-    //     }
-    // }
-    // return path;
 });
 
 app.Run();
