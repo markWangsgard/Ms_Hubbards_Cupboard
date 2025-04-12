@@ -104,11 +104,9 @@ app.MapGet("/recipes/id", ([FromQuery] string title) =>
 });
 app.MapPost("/rating/{id}/{rating}", (int id, int rating) =>
 {
-    Recipe currentRecipe = recipeDatabase.Find((Recipe recipe) =>
-    {
-        return recipe.Id == id;
-    });
+    Recipe currentRecipe = recipeDatabase[id];
     currentRecipe.Rating = (currentRecipe.Rating + rating) / 2;
+    recipeDatabase[id] = currentRecipe;
     saveRecipes();
 });
 app.MapPost("/newRecipe/upload", ([FromForm] IFormFile photo, [FromForm] string recipeJSON) =>

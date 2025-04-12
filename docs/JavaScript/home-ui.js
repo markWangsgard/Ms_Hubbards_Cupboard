@@ -85,7 +85,7 @@ const generateCard = async (recipe) => {
     rateContainerElement.appendChild(ratingImageElement);
   }
   const ratingNumberElement = document.createElement("p");
-  ratingNumberElement.textContent = recipe.rating;
+  ratingNumberElement.textContent = Math.round(recipe.rating);
 
   // todo: Set if recipe is favorited
   const favoriteIconElement = document.createElement("img");
