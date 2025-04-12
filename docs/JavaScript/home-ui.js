@@ -150,11 +150,20 @@ const addAllEventListeners = () => {
   const filterElement = document.getElementById("filter");
   filterElement.addEventListener("input", async (e) => {
     if (filterElement.value === "all") {
+      
       await generateAllRecipes();
     } else if (filterElement.value === "EasyFirst") {
       allRecipesContainerElement.replaceChildren();
       const allRecipes = await getAllRecipes();
       allRecipes.sort((a, b) => a.difficulty - b.difficulty);
+      allRecipes.forEach(async (recipe) => {
+        const card = await generateCard(recipe);
+        allRecipesContainerElement.appendChild(card);
+      });
+    } else if (filterElement.value === "HardFirst") {
+      allRecipesContainerElement.replaceChildren();
+      const allRecipes = await getAllRecipes();
+      allRecipes.sort((a, b) => b.difficulty - a.difficulty);
       allRecipes.forEach(async (recipe) => {
         const card = await generateCard(recipe);
         allRecipesContainerElement.appendChild(card);
