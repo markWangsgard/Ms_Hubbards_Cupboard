@@ -3,7 +3,7 @@ footerElement.classList = "mobile-visible"
 
 const navElement = document.createElement("nav");
 const link1Element = document.createElement("a");
-link1Element.href = "http://127.0.0.1:5500/html/index.html";
+link1Element.href = "http://127.0.0.1:5500/html/home.html";
 const link1ImgElement = document.createElement("img");
 link1ImgElement.classList = "large-icon";
 link1ImgElement.src = "./images/home-icon.svg";
