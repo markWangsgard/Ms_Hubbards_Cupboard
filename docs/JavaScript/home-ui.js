@@ -95,7 +95,7 @@ const generateCard = async (recipe) => {
   cardElement.appendChild(favoriteButtonElement);
 
   cardElement.addEventListener("click", (e) => {
-    window.location.href = `./recipe.html?id=${recipe.id}`;
+    window.location.href = `/recipe.html?id=${recipe.id}`;
   });
 
   return cardElement;
