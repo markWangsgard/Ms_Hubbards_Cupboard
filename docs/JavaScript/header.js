@@ -10,13 +10,13 @@ const navElement = document.createElement("nav");
 navElement.classList = "mobile-hidden"
 const link1Element = document.createElement("a");
 link1Element.textContent = "Home";
-link1Element.href = "../html/home.html";
+link1Element.href = "./home.html";
 const link2Element = document.createElement("a");
 link2Element.textContent = "Pantry";
-link2Element.href = "../html/pantry.html";
+link2Element.href = "./pantry.html";
 const link3Element = document.createElement("a");
 link3Element.textContent = "Add a Recipe";
-link3Element.href = "../html/addRecipe.html"
+link3Element.href = "./addRecipe.html"
 
 navElement.appendChild(link1Element);
 navElement.appendChild(link2Element);
