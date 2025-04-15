@@ -1,5 +1,6 @@
 import { getRecipe, sendRating } from "./service.js";
 import { baseURL } from "./constants.js";
+import {getFavorites, ToggleFavoriteRecipe} from "./domain.js";
 
 const recipeId = window.location.search?.split("?")[1].split("=")[1];
 const setupPage = async () => {
@@ -74,6 +75,22 @@ const setupPage = async () => {
   const ratingNumberElement = document.createElement("p");
   ratingNumberElement.textContent = recipe.rating.toFixed(1);
   rateContainerElement.appendChild(ratingNumberElement);
+  const favoriteButton = document.getElementById("favorite-button");
+  const listOfFavorites = getFavorites();
+  if (listOfFavorites.includes(recipe.id))
+  {
+    favoriteButton.classList = "button-favorited";
+    favoriteButton.textContent = "Favorited";
+  }
+  else {
+    favoriteButton.classList = "button-not-favorited";
+    favoriteButton.textContent = "Favorite";
+  }
+  favoriteButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    ToggleFavoriteRecipe(recipe.id);
+    setupPage();
+  });
   //ingredients
   const ingredientsListElement = document.getElementById("ingredient-list");
   ingredientsListElement.replaceChildren();

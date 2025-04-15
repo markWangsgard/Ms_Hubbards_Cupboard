@@ -84,19 +84,6 @@ input {
     top: .25em;
     right: .25em;
   }
-  /* .button-not-favorited {
-
-  } */
-  .button-favorited {
-    background-color: var(--recipe-card-background-color);
-    color: var(--recipe-card-text-color);
-  }
-  button {
-    background-color: var(--button-background-color);
-    color: var(--button-text-color);
-    padding: 0.3em;
-    border-radius: 5em;
-  }
 }
 section {
   display: flex;
