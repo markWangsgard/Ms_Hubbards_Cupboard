@@ -1,56 +1,16 @@
 20pts: HTML Mastery
-form (New Recipe)
-    text (Name)
-    number (Servings)
-    select (difficulty level)
-    reset
-    submit
-img (logo / recipes)
-a
-ul or ol or dl (ingredients)
 figure (Recipe)
-section or article (different browsing sections)
 aside ?
-nav (cart/browse/recipe)
+
 50pts: CSS Mastery
-appropriate selectors
-transitions
-hover
 nth child (recipe cards? / ingredient list? / directions?)
-layout (flex and/or grid)
-colors
-background colors
-text colors
-accent colors
-meet professional guidelines laid out on course canvas page
-colors stored in variables
-appropriate contrast for text
-text hue matches background hue
-margin and padding
-border and corner radius
 
 80pts: Javascript Mastery
 use of map and filter array functions
-manipulating the dom (creating and deleting elements)
-adding and/or removing event listeners
-use javascript across multiple files (e.g. export / import / modules)
-structured code organization (ui, domain, svc layers)
-async/await and promises
-network requests / call API
-read querystring (searching for recipes)
-local storage
 
 Functional Requirements
-10pts: Multiple pages
-5pts: Filter bar (somewhere)
-10pts: Make network call(s) to external API
-15pts: Drag & drop
-10pts: Shared page layout (header, footer, nav, etc.)
 
 Hard Things (at least 25 points required, any more is extra credit)
 Some of these "Hard Things" will require you to lean new tools. We will be going over c# apis and hosting in class.
 
-15pts: Back-end api (write your own in C# or node.js)
 10pts: Host Back-end api on cloud server
-15pts: Uploading, storing, and using files on a custom api
-8pts: Well done mobile responsive css with multiple elements being re-arranged

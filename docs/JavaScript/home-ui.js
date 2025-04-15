@@ -1,4 +1,5 @@
 import { baseURL } from "./constants.js";
+import { getFavorites, ToggleFavoriteRecipe } from "./domain.js";
 import { getAllRecipes, SearchRecipes } from "./service.js";
 
 const generateCard = async (recipe) => {
@@ -90,14 +91,22 @@ const generateCard = async (recipe) => {
 
   // todo: Set if recipe is favorited
   const favoriteIconElement = document.createElement("img");
-  favoriteIconElement.src = "../images/solid-bookmark.svg";
   favoriteIconElement.alt = "Favorited Recipe";
+  favoriteIconElement.id = "favoriteIcon" + recipe.id;
   favoriteIconElement.classList = "large-icon favorite-icon";
   const favoriteButtonElement = document.createElement("button");
-  favoriteButtonElement.textContent = "Favorite";
-  favoriteButtonElement.classList = "button-favorited";
-  // for when recipe isn't favorite
-  // favoriteButtonElement.classList = "button-not-favorited";
+  favoriteButtonElement.id = "favoriteButton" + recipe.id;
+
+  const favoritesList = getFavorites();
+  if (favoritesList !== null && favoritesList.includes(recipe.id)) {
+    favoriteIconElement.src = "../images/solid-bookmark.svg";
+    favoriteButtonElement.textContent = "Favorited";
+    favoriteButtonElement.classList = "button-favorited";
+  } else {
+    favoriteIconElement.src = "../images/empty-bookmark.svg";
+    favoriteButtonElement.textContent = "Favorite";
+    favoriteButtonElement.classList = "button-not-favorited";
+  }
 
   cardElement.appendChild(recipeIconElement);
   recipeIconElement.appendChild(imageElement);
@@ -113,8 +122,42 @@ const generateCard = async (recipe) => {
   cardElement.appendChild(favoriteIconElement);
   cardElement.appendChild(favoriteButtonElement);
 
+  favoriteIconElement.addEventListener("click", (e) => {
+    e.preventDefault();
+    ToggleFavoriteRecipe(recipe.id);
+    const favoritesList = getFavorites();
+    if (favoritesList !== null && favoritesList.includes(recipe.id)) {
+      favoriteIconElement.src = "../images/solid-bookmark.svg";
+      favoriteButtonElement.textContent = "Favorited";
+      favoriteButtonElement.classList = "button-favorited";
+    } else {
+      favoriteIconElement.src = "../images/empty-bookmark.svg";
+      favoriteButtonElement.textContent = "Favorite";
+      favoriteButtonElement.classList = "button-not-favorited";
+    }
+  });
+  favoriteButtonElement.addEventListener("click", (e) => {
+    e.preventDefault();
+    ToggleFavoriteRecipe(recipe.id);
+    const favoritesList = getFavorites();
+    if (favoritesList !== null && favoritesList.includes(recipe.id)) {
+      favoriteIconElement.src = "../images/solid-bookmark.svg";
+      favoriteButtonElement.textContent = "Favorited";
+      favoriteButtonElement.classList = "button-favorited";
+    } else {
+      favoriteIconElement.src = "../images/empty-bookmark.svg";
+      favoriteButtonElement.textContent = "Favorite";
+      favoriteButtonElement.classList = "button-not-favorited";
+    }
+  });
   cardElement.addEventListener("click", (e) => {
-    window.location.href = `./recipe.html?id=${recipe.id}`;
+    e.preventDefault();
+    if (
+      e.target.id != "favoriteIcon" + recipe.id &&
+      e.target.id != "favoriteButton" + recipe.id
+    ) {
+      window.location.href = `./recipe.html?id=${recipe.id}`;
+    }
   });
 
   return cardElement;
@@ -195,7 +238,7 @@ const generatePopularRecipes = async () => {
   );
   popularRecipesContainerElement.replaceChildren();
   const popularRecipes = await SearchRecipes("", "Popular");
-  popularRecipes.slice(0,6).forEach(async (recipe) => {
+  popularRecipes.slice(0, 6).forEach(async (recipe) => {
     const card = await generateCard(recipe);
     popularRecipesContainerElement.appendChild(card);
   });
