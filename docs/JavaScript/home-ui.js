@@ -135,6 +135,7 @@ const generateCard = async (recipe) => {
       favoriteButtonElement.textContent = "Favorite";
       favoriteButtonElement.classList = "button-not-favorited";
     }
+    generateFavoriteRecipes();
   });
   favoriteButtonElement.addEventListener("click", (e) => {
     e.preventDefault();
@@ -149,6 +150,7 @@ const generateCard = async (recipe) => {
       favoriteButtonElement.textContent = "Favorite";
       favoriteButtonElement.classList = "button-not-favorited";
     }
+    generateFavoriteRecipes();
   });
   cardElement.addEventListener("click", (e) => {
     e.preventDefault();
@@ -232,6 +234,20 @@ const addAllEventListeners = () => {
   });
 };
 
+const generateFavoriteRecipes = async () => {
+  const favoriteRecipesContainerElement = document.getElementById(
+    "favorite-recipes-container"
+  );
+  favoriteRecipesContainerElement.replaceChildren();
+  const allRecipes = await getAllRecipes();
+  const favoriteRecipeIds = getFavorites();
+  const favoriteRecipes = allRecipes.filter((r) => favoriteRecipeIds.includes(r.id));
+  favoriteRecipes.forEach(async (recipe) => {
+    const card = await generateCard(recipe);
+    favoriteRecipesContainerElement.appendChild(card);
+  });
+};
+
 const generatePopularRecipes = async () => {
   const popularRecipesContainerElement = document.getElementById(
     "popular-recipes-container"
@@ -296,6 +312,7 @@ const showSections = () => {
   quantityElement.classList.add("remove");
 };
 
+generateFavoriteRecipes();
 generatePopularRecipes();
 generateAllRecipes();
 addAllEventListeners();
