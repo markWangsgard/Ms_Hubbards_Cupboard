@@ -20,7 +20,7 @@ body {
 }
 .button,
 button {
-  color: var(--card-background-color);
+  color: var(--button-text-color);
   background-color: var(--button-background-color);
   padding: 0.5em;
   border-radius: 1em;

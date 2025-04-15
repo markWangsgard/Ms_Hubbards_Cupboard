@@ -194,7 +194,7 @@ const generatePopularRecipes = async () => {
   );
   popularRecipesContainerElement.replaceChildren();
   const popularRecipes = await SearchRecipes("", "Popular");
-  popularRecipes.slice(0,5).forEach(async (recipe) => {
+  popularRecipes.slice(0,6).forEach(async (recipe) => {
     const card = await generateCard(recipe);
     popularRecipesContainerElement.appendChild(card);
   });
@@ -213,6 +213,9 @@ const generateAllRecipes = async () => {
 };
 
 const generateSearchedRecipes = async (searchValue, filterValue) => {
+  const allRecipesContainerElement = document.getElementById(
+    "all-recipes-container"
+  );
   allRecipesContainerElement.replaceChildren();
   const searchedRecipes = await SearchRecipes(searchValue, filterValue);
   searchedRecipes.forEach(async (recipe) => {

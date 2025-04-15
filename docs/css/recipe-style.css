@@ -58,6 +58,13 @@ main {
       font-size: medium;
     }
   }
+  button {
+    width: 15em;
+  }
+  .favorited {
+    background-color: var(--recipe-card-background-color);
+    color: var(--dark-text-color);
+  }
 }
 
 #ingredients-directions-container {
