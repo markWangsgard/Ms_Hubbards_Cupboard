@@ -1,4 +1,5 @@
-const url = "http://localhost:5032";
+// const url = "http://localhost:5032";
+const url = "https://ms-hubbards-cupboard.onrender.com";
 
 export const getAllRecipes = async () => {
   const response = await fetch(`${url}/recipes`);
