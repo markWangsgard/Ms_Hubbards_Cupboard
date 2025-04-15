@@ -1,4 +1,5 @@
 import { getRecipe, sendRating } from "./service.js";
+import { baseURL } from "./constants.js";
 
 const recipeId = window.location.search?.split("?")[1].split("=")[1];
 const setupPage = async () => {
@@ -7,7 +8,7 @@ const setupPage = async () => {
   document.title = recipe.title;
   //img
   const imgElement = document.getElementById("recipe-photo");
-  imgElement.style.backgroundImage = `url(${recipe.photoURL})`;
+  imgElement.style.backgroundImage = `url(${baseURL + recipe.photoURL})`;
   //title
   const titleElement = document.getElementById("title");
   titleElement.textContent = recipe.title;

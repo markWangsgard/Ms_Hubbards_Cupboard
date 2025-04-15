@@ -1,3 +1,4 @@
+import { baseURL } from "./constants.js";
 import { getAllRecipes, SearchRecipes } from "./service.js";
 
 const generateCard = async (recipe) => {
@@ -7,7 +8,7 @@ const generateCard = async (recipe) => {
 
   const recipeIconElement = document.createElement("figure");
   const imageElement = document.createElement("img");
-  imageElement.src = recipe.photoURL;
+  imageElement.src = baseURL + recipe.photoURL;
   imageElement.alt = recipe.title;
   const servingSizeElement = document.createElement("figcaption");
   servingSizeElement.textContent = "Serving Size: " + recipe.servingSize;
