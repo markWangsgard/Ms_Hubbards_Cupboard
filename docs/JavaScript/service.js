@@ -1,4 +1,4 @@
-
+import { baseURL } from "./constants.js";
 
 export const getAllRecipes = async () => {
   const response = await fetch(`${baseURL}/recipes`);
