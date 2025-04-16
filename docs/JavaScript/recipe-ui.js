@@ -1,6 +1,12 @@
 import { getRecipe, sendRating } from "./service.js";
 import { baseURL } from "./constants.js";
-import {getFavorites, ToggleFavoriteRecipe} from "./domain.js";
+import {
+  AddContinueMaking,
+  GetContinueMaking,
+  getFavorites,
+  RemoveContinueMaking,
+  ToggleFavoriteRecipe,
+} from "./domain.js";
 
 const recipeId = window.location.search?.split("?")[1].split("=")[1];
 const setupPage = async () => {
@@ -57,7 +63,7 @@ const setupPage = async () => {
   //rating
   const rateContainerElement = document.getElementById("rate");
   rateContainerElement.replaceChildren();
-  const rating = Math.round(recipe.rating,1);
+  const rating = Math.round(recipe.rating, 1);
   for (var i = 0; i < rating; i++) {
     const ratingImageElement = document.createElement("img");
     ratingImageElement.src = "../images/yellow-star.svg";
@@ -77,13 +83,11 @@ const setupPage = async () => {
   rateContainerElement.appendChild(ratingNumberElement);
   const favoriteButton = document.getElementById("favorite-button");
   const listOfFavorites = getFavorites();
-  if (listOfFavorites.includes(recipe.id))
-  {
-    favoriteButton.classList = "button-favorited";
+  if (listOfFavorites !== null && listOfFavorites.includes(recipe.id)) {
+    favoriteButton.classList = "light-button";
     favoriteButton.textContent = "Favorited";
-  }
-  else {
-    favoriteButton.classList = "button-not-favorited";
+  } else {
+    favoriteButton.classList = "dark-button";
     favoriteButton.textContent = "Favorite";
   }
   favoriteButton.addEventListener("click", (e) => {
@@ -112,7 +116,12 @@ const setupPage = async () => {
 
 const setUpEventListeners = () => {
   const completeButton = document.getElementById("mark-complete-button");
-  completeButton.addEventListener("click", (e) => {});
+  completeButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    RemoveContinueMaking(recipeId);
+    console.log("Help Me");
+    completeButton.classList.add("light-button");
+  });
 
   const star1Element = document.getElementById(`star-1`);
   const star2Element = document.getElementById(`star-2`);
@@ -204,3 +213,5 @@ const setUpEventListeners = () => {
 
 setupPage();
 setUpEventListeners();
+AddContinueMaking(recipeId);
+console.log(GetContinueMaking());

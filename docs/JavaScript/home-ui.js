@@ -101,11 +101,11 @@ const generateCard = async (recipe) => {
   if (favoritesList !== null && favoritesList.includes(recipe.id)) {
     favoriteIconElement.src = "../images/solid-bookmark.svg";
     favoriteButtonElement.textContent = "Favorited";
-    favoriteButtonElement.classList = "button-favorited";
+    favoriteButtonElement.classList = "light-button";
   } else {
     favoriteIconElement.src = "../images/empty-bookmark.svg";
     favoriteButtonElement.textContent = "Favorite";
-    favoriteButtonElement.classList = "button-not-favorited";
+    favoriteButtonElement.classList = "dark-button";
   }
 
   cardElement.appendChild(recipeIconElement);
@@ -129,11 +129,11 @@ const generateCard = async (recipe) => {
     if (favoritesList !== null && favoritesList.includes(recipe.id)) {
       favoriteIconElement.src = "../images/solid-bookmark.svg";
       favoriteButtonElement.textContent = "Favorited";
-      favoriteButtonElement.classList = "button-favorited";
+      favoriteButtonElement.classList = "light-button";
     } else {
       favoriteIconElement.src = "../images/empty-bookmark.svg";
       favoriteButtonElement.textContent = "Favorite";
-      favoriteButtonElement.classList = "button-not-favorited";
+      favoriteButtonElement.classList = "dark-button";
     }
     generateFavoriteRecipes();
   });
@@ -144,11 +144,11 @@ const generateCard = async (recipe) => {
     if (favoritesList !== null && favoritesList.includes(recipe.id)) {
       favoriteIconElement.src = "../images/solid-bookmark.svg";
       favoriteButtonElement.textContent = "Favorited";
-      favoriteButtonElement.classList = "button-favorited";
+      favoriteButtonElement.classList = "light-button";
     } else {
       favoriteIconElement.src = "../images/empty-bookmark.svg";
       favoriteButtonElement.textContent = "Favorite";
-      favoriteButtonElement.classList = "button-not-favorited";
+      favoriteButtonElement.classList = "dark-button";
     }
     generateFavoriteRecipes();
   });

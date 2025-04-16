@@ -1,8 +1,6 @@
 :root {
   --recipe-card-text-color: #1f1f1f;
   --recipe-card-background-color: #f7f7f7;
-  --button-background-color: #69392b;
-  --button-text-color: #f1e2df;
 }
 #search-bar-container{
   display: flex;

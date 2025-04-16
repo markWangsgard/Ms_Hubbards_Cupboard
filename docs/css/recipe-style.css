@@ -1,8 +1,6 @@
 :root {
   --recipe-card-background-color: #f7f7f7;
   --dark-text-color: #332000;
-  --button-background-color: #69392b;
-
 }
 main {
   width: 100%;
@@ -96,8 +94,6 @@ main {
     font-size: small;
     padding: .5em;
     border-radius: 1em;
-    background-color: var(--button-background-color);
-    color: var(--recipe-card-background-color);
   }
 }
 #rate-recipe {
