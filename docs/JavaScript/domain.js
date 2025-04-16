@@ -74,7 +74,7 @@ export const AddContinueMaking = (recipeId) => {
   storedContinue?.forEach((id) => {
     continueMakingRecipes.push(id);
   });
-  if (!continueMakingRecipes.includes(recipeId)) {
+  if (!continueMakingRecipes.includes(recipeId.toString())) {
     continueMakingRecipes.push(recipeId);
   }
 
@@ -91,7 +91,7 @@ export const RemoveContinueMaking = (recipeId) => {
   });
   if (
     continueMakingRecipes !== null &&
-    continueMakingRecipes.includes(recipeId)
+    continueMakingRecipes.includes(recipeId.toString())
   ) {
     const idIndex = continueMakingRecipes.indexOf(recipeId);
     continueMakingRecipes.splice(idIndex, 1);

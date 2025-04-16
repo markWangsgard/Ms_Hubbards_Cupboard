@@ -28,7 +28,8 @@ button, input[type="submit"], .button {
   height: 20px;
 }
 .large-icon {
-  height: 30px;
+  height: 35px;
+  margin: .25em;
 }
 /* .star { */
   /* filter: contrast(80%); */

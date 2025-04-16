@@ -25,12 +25,21 @@
           <option value="EasyFirst">Difficulty: Easy - Hard</option>
           <option value="HardFirst">Difficulty: Hard - Easy</option>
         </select>
-        <label for="ServingSizeQuantity" class="remove">Serving Size Quantity</label>
-        <input type="number" name="ServingSizeQuantity" id="ServingSizeQuantity" placeholder="Serving Size" min="1" class="remove">
+        <label for="ServingSizeQuantity" class="remove"
+          >Serving Size Quantity</label
+        >
+        <input
+          type="number"
+          name="ServingSizeQuantity"
+          id="ServingSizeQuantity"
+          placeholder="Serving Size"
+          min="1"
+          class="remove"
+        />
       </section>
       <section id="continue-making-section">
         <h2>Continue Making</h2>
-        <article class="recipe-container">
+        <article class="recipe-container" id="continue-making-container">
           <div class="recipe-card">
             <figure>
               <img src="../images/pancakes.jpg" alt="pancakes" />
@@ -97,22 +106,36 @@
                 <p>4</p>
               </div>
             </article>
-            <img
-              src="../images/empty-bookmark.svg"
-              alt="Favorited Recipe"
-              class="large-icon favorite-icon"
-            />
+            <div class="iconDiv">
+              <img
+                src="../images/empty-bookmark.svg"
+                alt="Favorited Recipe"
+                class="large-icon favorite-icon"
+              />
+              <img
+                src="../images/check-icon.svg"
+                alt="Favorited Recipe"
+                class="large-icon favorite-icon"
+              />
+            </div>
             <button class="dark-button">Favorite</button>
+            <button class="dark-button mark-complete">Mark as complete</button>
           </div>
         </article>
       </section>
       <section id="favorites-section">
         <h2>Favorites</h2>
-        <article class="recipe-container" id="favorite-recipes-container"></article>
+        <article
+          class="recipe-container"
+          id="favorite-recipes-container"
+        ></article>
       </section>
       <section id="popular-section">
         <h2>Popular Recipes</h2>
-        <article id="popular-recipes-container" class="recipe-container"></article>
+        <article
+          id="popular-recipes-container"
+          class="recipe-container"
+        ></article>
       </section>
       <section>
         <h2 id="all-recipes-title">All Recipes</h2>

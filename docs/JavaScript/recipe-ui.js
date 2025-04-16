@@ -119,7 +119,6 @@ const setUpEventListeners = () => {
   completeButton.addEventListener("click", (e) => {
     e.preventDefault();
     RemoveContinueMaking(recipeId);
-    console.log("Help Me");
     completeButton.classList.add("light-button");
   });
 
@@ -214,4 +213,3 @@ const setUpEventListeners = () => {
 setupPage();
 setUpEventListeners();
 AddContinueMaking(recipeId);
-console.log(GetContinueMaking());
