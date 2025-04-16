@@ -165,7 +165,8 @@ const generateCard = async (recipe) => {
     if (
       e.target.id != "favoriteIcon" + recipe.id &&
       e.target.id != "favoriteButton" + recipe.id &&
-      e.target.id != "completeButton" + recipe.id
+      e.target.id != "completeButton" + recipe.id &&
+      e.target.id != "completeIcon" + recipe.id
     ) {
       window.location.href = `./recipe.html?id=${recipe.id}`;
     }
@@ -273,12 +274,18 @@ const generateContinueMaking = async () => {
     markCompleteIconElement.src = "../images/check-icon.svg";
     markCompleteIconElement.alt = "Mark Recipe Complete";
     markCompleteIconElement.classList = "large-icon favorite-icon";
+    markCompleteIconElement.id = "completeIcon" + recipe.id;
     iconDivElement.appendChild(markCompleteIconElement);
 
     card.appendChild(markCompleteButtonElement);
     continueMakingContainerElement.appendChild(card);
 
     markCompleteButtonElement.addEventListener("click", (e) => {
+      e.preventDefault();
+      RemoveContinueMaking(recipe.id);
+      generateContinueMaking();
+    });
+    markCompleteIconElement.addEventListener("click", (e) => {
       e.preventDefault();
       RemoveContinueMaking(recipe.id);
       generateContinueMaking();

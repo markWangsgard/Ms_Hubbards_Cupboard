@@ -4,4 +4,5 @@ COPY ./api ./
 RUN dotnet restore
 RUN dotnet publish -o out
 WORKDIR /App/out
+COPY ./api/images ./
 ENTRYPOINT ["dotnet", "api.dll"]
