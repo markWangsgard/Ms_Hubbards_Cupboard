@@ -8,23 +8,23 @@
     "net9.0": []
   },
   "packageFolders": {
-    "C:\\Users\\mwang\\.nuget\\packages\\": {},
+    "C:\\Users\\mark.wangsgard\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mwang\\Code\\WebDev\\finalProject\\api\\api.csproj",
+      "projectUniqueName": "C:\\Users\\mark.wangsgard\\code\\Ms_Hubbards_Cupboard\\api\\api.csproj",
       "projectName": "api",
-      "projectPath": "C:\\Users\\mwang\\Code\\WebDev\\finalProject\\api\\api.csproj",
-      "packagesPath": "C:\\Users\\mwang\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mwang\\Code\\WebDev\\finalProject\\api\\obj\\",
+      "projectPath": "C:\\Users\\mark.wangsgard\\code\\Ms_Hubbards_Cupboard\\api\\api.csproj",
+      "packagesPath": "C:\\Users\\mark.wangsgard\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\mark.wangsgard\\code\\Ms_Hubbards_Cupboard\\api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\mwang\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\mark.wangsgard\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -76,7 +76,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

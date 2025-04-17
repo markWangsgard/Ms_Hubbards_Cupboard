@@ -95,6 +95,8 @@ export const RemoveContinueMaking = (recipeId) => {
   ) {
     const idIndex = continueMakingRecipes.indexOf(recipeId);
     continueMakingRecipes.splice(idIndex, 1);
+
+    //auto removes ingredients
   }
 
   localStorage.setItem(

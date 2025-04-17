@@ -66,5 +66,5 @@ You would be able to add/remove items from your pantry (kinda like a shopping li
 - April 05 (40%) User can search recipes
 - April 09 (50%) User can manage Pantry
 - April 12 (70%) User can filter recipes (difficulty, serving size, etc.)
-- April 16 (80%) User can mark recipe as complete (and ingredients auto remove)
-- April 19 (90%) User can favorite recipes
+- April 16 (80%) User can mark recipe as complete and favorite recipes
+- April 19 (90%) User can filter based on ingredients in pantry and mark complete auto removes
