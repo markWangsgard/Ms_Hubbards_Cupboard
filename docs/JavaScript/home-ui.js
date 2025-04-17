@@ -1,4 +1,10 @@
 import { baseURL } from "./constants.js";
+import {
+  GetContinueMaking,
+  getFavorites,
+  RemoveContinueMaking,
+  ToggleFavoriteRecipe,
+} from "./domain.js";
 import { getAllRecipes, SearchRecipes } from "./service.js";
 
 const generateCard = async (recipe) => {
@@ -88,16 +94,26 @@ const generateCard = async (recipe) => {
   const ratingNumberElement = document.createElement("p");
   ratingNumberElement.textContent = recipe.rating.toFixed(1);
 
-  // todo: Set if recipe is favorited
+  const iconDivElement = document.createElement("div");
+  iconDivElement.classList = "iconDiv";
   const favoriteIconElement = document.createElement("img");
-  favoriteIconElement.src = "../images/solid-bookmark.svg";
   favoriteIconElement.alt = "Favorited Recipe";
+  favoriteIconElement.id = "favoriteIcon" + recipe.id;
   favoriteIconElement.classList = "large-icon favorite-icon";
   const favoriteButtonElement = document.createElement("button");
-  favoriteButtonElement.textContent = "Favorite";
-  favoriteButtonElement.classList = "button-favorited";
-  // for when recipe isn't favorite
-  // favoriteButtonElement.classList = "button-not-favorited";
+  favoriteButtonElement.classList = "favoriteButton";
+  favoriteButtonElement.id = "favoriteButton" + recipe.id;
+
+  const favoritesList = getFavorites();
+  if (favoritesList !== null && favoritesList.includes(recipe.id)) {
+    favoriteIconElement.src = "../images/solid-bookmark.svg";
+    favoriteButtonElement.textContent = "Favorited";
+    favoriteButtonElement.classList.add("light-button");
+  } else {
+    favoriteIconElement.src = "../images/empty-bookmark.svg";
+    favoriteButtonElement.textContent = "Favorite";
+    favoriteButtonElement.classList.add("dark-button");
+  }
 
   cardElement.appendChild(recipeIconElement);
   recipeIconElement.appendChild(imageElement);
@@ -110,11 +126,50 @@ const generateCard = async (recipe) => {
   difficultyContainerElement.appendChild(difficultyWordElement);
   recipeInfoElement.appendChild(rateContainerElement);
   rateContainerElement.appendChild(ratingNumberElement);
-  cardElement.appendChild(favoriteIconElement);
+  iconDivElement.appendChild(favoriteIconElement);
+  cardElement.appendChild(iconDivElement);
   cardElement.appendChild(favoriteButtonElement);
 
+  favoriteIconElement.addEventListener("click", (e) => {
+    e.preventDefault();
+    ToggleFavoriteRecipe(recipe.id);
+    const favoritesList = getFavorites();
+    if (favoritesList !== null && favoritesList.includes(recipe.id)) {
+      favoriteIconElement.src = "../images/solid-bookmark.svg";
+      favoriteButtonElement.textContent = "Favorited";
+      favoriteButtonElement.classList = "light-button";
+    } else {
+      favoriteIconElement.src = "../images/empty-bookmark.svg";
+      favoriteButtonElement.textContent = "Favorite";
+      favoriteButtonElement.classList = "dark-button";
+    }
+    generateFavoriteRecipes();
+  });
+  favoriteButtonElement.addEventListener("click", (e) => {
+    e.preventDefault();
+    ToggleFavoriteRecipe(recipe.id);
+    const favoritesList = getFavorites();
+    if (favoritesList !== null && favoritesList.includes(recipe.id)) {
+      favoriteIconElement.src = "../images/solid-bookmark.svg";
+      favoriteButtonElement.textContent = "Favorited";
+      favoriteButtonElement.classList = "light-button";
+    } else {
+      favoriteIconElement.src = "../images/empty-bookmark.svg";
+      favoriteButtonElement.textContent = "Favorite";
+      favoriteButtonElement.classList = "dark-button";
+    }
+    generateFavoriteRecipes();
+  });
   cardElement.addEventListener("click", (e) => {
-    window.location.href = `./recipe.html?id=${recipe.id}`;
+    e.preventDefault();
+    if (
+      e.target.id != "favoriteIcon" + recipe.id &&
+      e.target.id != "favoriteButton" + recipe.id &&
+      e.target.id != "completeButton" + recipe.id &&
+      e.target.id != "completeIcon" + recipe.id
+    ) {
+      window.location.href = `./recipe.html?id=${recipe.id}`;
+    }
   });
 
   return cardElement;
@@ -189,13 +244,85 @@ const addAllEventListeners = () => {
   });
 };
 
+const generateContinueMaking = async () => {
+  const continueMakingSectionElement = document.getElementById(
+    "continue-making-section"
+  );
+  const continueMakingContainerElement = document.getElementById(
+    "continue-making-container"
+  );
+  continueMakingContainerElement.replaceChildren();
+  const allRecipes = await getAllRecipes();
+  const continueMakingIds = GetContinueMaking();
+  const continueMakingRecipes = allRecipes.filter((recipe) =>
+    continueMakingIds.includes(recipe.id.toString())
+  );
+  if (continueMakingRecipes.length == 0) {
+    continueMakingSectionElement.classList.add("remove");
+  } else {
+    continueMakingSectionElement.classList.remove("remove");
+  }
+  continueMakingRecipes.forEach(async (recipe) => {
+    const card = await generateCard(recipe);
+    const markCompleteButtonElement = document.createElement("button");
+    markCompleteButtonElement.textContent = "Mark as Complete";
+    markCompleteButtonElement.id = "completeButton" + recipe.id;
+    markCompleteButtonElement.classList = "dark-button mark-complete";
+
+    const iconDivElement = card.querySelector(".iconDiv");
+    const markCompleteIconElement = document.createElement("img");
+    markCompleteIconElement.src = "../images/check-icon.svg";
+    markCompleteIconElement.alt = "Mark Recipe Complete";
+    markCompleteIconElement.classList = "large-icon favorite-icon";
+    markCompleteIconElement.id = "completeIcon" + recipe.id;
+    iconDivElement.appendChild(markCompleteIconElement);
+
+    card.appendChild(markCompleteButtonElement);
+    continueMakingContainerElement.appendChild(card);
+
+    markCompleteButtonElement.addEventListener("click", (e) => {
+      e.preventDefault();
+      RemoveContinueMaking(recipe.id);
+      generateContinueMaking();
+    });
+    markCompleteIconElement.addEventListener("click", (e) => {
+      e.preventDefault();
+      RemoveContinueMaking(recipe.id);
+      generateContinueMaking();
+    });
+  });
+};
+
+const generateFavoriteRecipes = async () => {
+  const favoriteRecipesSectionElement =
+    document.getElementById("favorites-section");
+  const favoriteRecipesContainerElement = document.getElementById(
+    "favorite-recipes-container"
+  );
+  favoriteRecipesContainerElement.replaceChildren();
+  const allRecipes = await getAllRecipes();
+  const favoriteRecipeIds = getFavorites();
+  const favoriteRecipes = allRecipes.filter((r) =>
+    favoriteRecipeIds.includes(r.id)
+  );
+  if (favoriteRecipes.length == 0) {
+    favoriteRecipesSectionElement.classList.add("remove");
+  } else {
+    favoriteRecipesSectionElement.classList.remove("remove");
+  }
+  favoriteRecipes.forEach(async (recipe) => {
+    const card = await generateCard(recipe);
+    favoriteRecipesContainerElement.appendChild(card);
+  });
+};
+
 const generatePopularRecipes = async () => {
   const popularRecipesContainerElement = document.getElementById(
     "popular-recipes-container"
   );
   popularRecipesContainerElement.replaceChildren();
   const popularRecipes = await SearchRecipes("", "Popular");
-  popularRecipes.slice(0,6).forEach(async (recipe) => {
+  popularRecipes.slice(0, 6).forEach(async (recipe) => {
     const card = await generateCard(recipe);
     popularRecipesContainerElement.appendChild(card);
   });
@@ -239,6 +366,9 @@ const hideSections = () => {
   allRecipesTitleElement.classList.add("remove");
 };
 const showSections = () => {
+  const continueMakingList = GetContinueMaking();
+  const favoritesList = getFavorites();
+
   const continueMakingSectionElement = document.getElementById(
     "continue-making-section"
   );
@@ -246,13 +376,20 @@ const showSections = () => {
   const popularSectionElement = document.getElementById("popular-section");
   const allRecipesTitleElement = document.getElementById("all-recipes-title");
   const quantityElement = document.getElementById("ServingSizeQuantity");
-  continueMakingSectionElement.classList.remove("remove");
-  favoritesSectionElement.classList.remove("remove");
+
+  if (!continueMakingList) {
+    continueMakingSectionElement.classList.remove("remove");
+  }
+  if (!favoritesList) {
+    favoritesSectionElement.classList.remove("remove");
+  }
   popularSectionElement.classList.remove("remove");
   allRecipesTitleElement.classList.remove("remove");
   quantityElement.classList.add("remove");
 };
 
+generateContinueMaking();
+generateFavoriteRecipes();
 generatePopularRecipes();
 generateAllRecipes();
 addAllEventListeners();

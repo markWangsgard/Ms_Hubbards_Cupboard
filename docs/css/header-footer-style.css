@@ -4,9 +4,11 @@
   --header-text-color: #f1e2df;
   --page-background-color: #ffb22c;
 
-  --button-background-color: #69392b;
-  --button-text-color: #f1e2df;
+  --dark-button-background-color: #69392b;
+  --light-button-background-color: #f1e2df;
 
+  --dark-text-color: #160c09;
+  --light-text-color: #f8dcd3;
   --error-text-color: red;
 }
 body {
@@ -18,10 +20,7 @@ body {
   flex-direction: column;
   align-items: center;
 }
-.button,
-button {
-  color: var(--button-text-color);
-  background-color: var(--button-background-color);
+button, input[type="submit"], .button {
   padding: 0.5em;
   border-radius: 1em;
 }
@@ -29,7 +28,8 @@ button {
   height: 20px;
 }
 .large-icon {
-  height: 30px;
+  height: 35px;
+  margin: .25em;
 }
 /* .star { */
   /* filter: contrast(80%); */
@@ -48,6 +48,14 @@ button {
   width: 15em;
   margin-left: auto;
   margin-right: auto;
+}
+.dark-button {
+  background-color: var(--dark-button-background-color);
+  color: var(--light-text-color);
+}
+.light-button {
+  background-color: var(--light-button-background-color);
+  color: var(--dark-text-color);
 }
 input:not(#image, [type="submit"]),
 select,

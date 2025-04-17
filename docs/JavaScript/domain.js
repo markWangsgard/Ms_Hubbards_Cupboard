@@ -1,5 +1,9 @@
 export const addItem = (item) => {
-  const itemList = getAllItems();
+  const storedItems = getAllItems();
+  const itemList = [];
+  storedItems?.forEach((i) => {
+    itemList.push(i);
+  })
   itemList.push(item);
 
   localStorage.setItem("item-list", JSON.stringify(itemList));
@@ -16,22 +20,85 @@ export const getItem = (itemName) => {
 export const removeItem = (itemIndex) => {
   const listOfItems = getAllItems();
 
-  listOfItems.splice(itemIndex, 1);
+  if(listOfItems!==null && listOfItems.map((i) => i.id).includes(itemIndex))
+  {
+    listOfItems.splice(itemIndex, 1);
+  }
   localStorage.setItem("item-list", JSON.stringify(listOfItems));
 };
 export const getFavorites = () => {
   return JSON.parse(localStorage.getItem("favorites"));
-}
-export const favoriteRecipe = (recipeId) => {
-  const favoriteRecipes = getFavorites();
-  favoriteRecipes.push(recipeId);
+};
+export const ToggleFavoriteRecipe = (recipeId) => {
+  const storedFavorites = getFavorites();
+  const favoriteRecipes = [];
+  storedFavorites?.forEach((id) => {
+    favoriteRecipes.push(id);
+  });
+  if (favoriteRecipes !== null && favoriteRecipes.includes(recipeId)) {
+    const idIndex = favoriteRecipes.indexOf(recipeId);
+    favoriteRecipes.splice(idIndex, 1);
+  } else {
+    favoriteRecipes.push(recipeId);
+  }
 
   localStorage.setItem("favorites", JSON.stringify(favoriteRecipes));
 };
-export const unfavoriteRecipe = (recipeId) => {
-  const favoriteRecipes = getFavorites();
-  const idIndex = favoriteRecipes.indexOf(recipeId);
-  favoriteRecipes.splice(idIndex,1);
+export const GetContinueMaking = () => {
+  return JSON.parse(localStorage.getItem("continue-making"));
+};
+export const ToggleContinueMaking = (recipeId) => {
+  const storedContinue = GetContinueMaking();
+  const continueMakingRecipes = [];
+  storedContinue?.forEach((id) => {
+    continueMakingRecipes.push(id);
+  });
+  if (
+    continueMakingRecipes !== null &&
+    continueMakingRecipes.includes(recipeId)
+  ) {
+    const idIndex = continueMakingRecipes.indexOf(recipeId);
+    continueMakingRecipes.splice(idIndex, 1);
+  } else {
+    continueMakingRecipes.push(recipeId);
+  }
 
-  localStorage.setItem("favorites", JSON.stringify(favoriteRecipes));
+  localStorage.setItem(
+    "continue-making",
+    JSON.stringify(continueMakingRecipes)
+  );
+};
+export const AddContinueMaking = (recipeId) => {
+  const storedContinue = GetContinueMaking();
+  const continueMakingRecipes = [];
+  storedContinue?.forEach((id) => {
+    continueMakingRecipes.push(id);
+  });
+  if (!continueMakingRecipes.includes(recipeId.toString())) {
+    continueMakingRecipes.push(recipeId);
+  }
+
+  localStorage.setItem(
+    "continue-making",
+    JSON.stringify(continueMakingRecipes)
+  );
+};
+export const RemoveContinueMaking = (recipeId) => {
+  const storedContinue = GetContinueMaking();
+  const continueMakingRecipes = [];
+  storedContinue?.forEach((id) => {
+    continueMakingRecipes.push(id);
+  });
+  if (
+    continueMakingRecipes !== null &&
+    continueMakingRecipes.includes(recipeId.toString())
+  ) {
+    const idIndex = continueMakingRecipes.indexOf(recipeId);
+    continueMakingRecipes.splice(idIndex, 1);
+  }
+
+  localStorage.setItem(
+    "continue-making",
+    JSON.stringify(continueMakingRecipes)
+  );
 };

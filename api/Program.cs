@@ -118,7 +118,7 @@ app.MapPost("/newRecipe/upload", ([FromForm] IFormFile photo, [FromForm] string 
     int id = recipeDatabase.Count();
     string fileName = id + $".{photo.FileName.Split(".")[1]}";
     newRecipe.Id = id;
-    newRecipe.PhotoURL = $"http://localhost:5032/photo/{fileName}";
+    newRecipe.PhotoURL = $"./photo/{fileName}";
     string path = $"./images/{fileName}";
 
     using (var stream = File.Create(path))

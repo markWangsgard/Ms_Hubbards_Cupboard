@@ -1,10 +1,8 @@
 :root {
   --recipe-card-text-color: #1f1f1f;
   --recipe-card-background-color: #f7f7f7;
-  --button-background-color: #69392b;
-  --button-text-color: #f1e2df;
 }
-#search-bar-container{
+#search-bar-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -12,8 +10,8 @@
 
   * {
     margin: 1.5em;
-    margin-left: .5em;
-    margin-right: .5em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
   }
   #ServingSizeQuantity {
     width: 7em;
@@ -27,7 +25,10 @@ input {
   width: 30em;
   text-align: center;
 }
-
+.iconDiv {
+  display: flex;
+  flex-direction: column;
+}
 .recipe-card {
   color: var(--recipe-card-text-color);
   background-color: var(--recipe-card-background-color);
@@ -60,30 +61,23 @@ input {
     h4 {
       margin: 0;
     }
+    div {
+      display: flex;
+      align-items: center;
+      p {
+        margin-left: 0.5em;
+      }
+    }
   }
 
   p {
     margin: 0;
-    margin-top: .3em;
-    margin-bottom: .3em;
-  }
-  
-  .time-to-make {
-    width: 15em;
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
   }
 
-  div {
-    display: flex;
-    align-items: center;
-    p {
-      margin-left: 0.5em;
-    }
-  }
-  button {
-    background-color: var(--button-background-color);
-    color: var(--button-text-color);
-    padding: 0.3em;
-    border-radius: 5em;
+  .time-to-make {
+    width: 15em;
   }
 }
 section {
@@ -94,7 +88,7 @@ section {
 
   h2 {
     margin: 0.25em;
-    padding: .5em;
+    padding: 0.5em;
     border-radius: 1.2em;
     text-align: center;
     background-color: var(--recipe-card-background-color);
@@ -130,7 +124,12 @@ section {
   #search-bar {
     width: 50%;
   }
+
+  .mark-complete {
+    margin-top: 0.5em;
+  }
 }
+/* desktop */
 @media only screen and (min-width: 600px) {
   .recipe-container {
     flex-direction: row;
@@ -147,7 +146,7 @@ section {
       display: none;
     }
   }
-  #search-bar-container{
+  #search-bar-container {
     flex-direction: row;
   }
 }
