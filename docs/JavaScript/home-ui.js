@@ -100,6 +100,7 @@ const generateCard = async (recipe) => {
   favoriteIconElement.alt = "Favorited Recipe";
   favoriteIconElement.id = "favoriteIcon" + recipe.id;
   favoriteIconElement.classList = "large-icon favorite-icon";
+
   const favoriteButtonElement = document.createElement("button");
   favoriteButtonElement.classList = "favoriteButton";
   favoriteButtonElement.id = "favoriteButton" + recipe.id;
@@ -143,7 +144,10 @@ const generateCard = async (recipe) => {
       favoriteButtonElement.textContent = "Favorite";
       favoriteButtonElement.classList = "dark-button";
     }
+    generateContinueMaking();
     generateFavoriteRecipes();
+    generatePopularRecipes();
+    generateAllRecipes();
   });
   favoriteButtonElement.addEventListener("click", (e) => {
     e.preventDefault();
@@ -158,7 +162,10 @@ const generateCard = async (recipe) => {
       favoriteButtonElement.textContent = "Favorite";
       favoriteButtonElement.classList = "dark-button";
     }
+    generateContinueMaking();
     generateFavoriteRecipes();
+    generatePopularRecipes();
+    generateAllRecipes();
   });
   cardElement.addEventListener("click", (e) => {
     e.preventDefault();
