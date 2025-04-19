@@ -391,11 +391,13 @@ const hideSections = () => {
     "continue-making-section"
   );
   const favoritesSectionElement = document.getElementById("favorites-section");
+  const availableSectionElement = document.getElementById("available-section");
   const popularSectionElement = document.getElementById("popular-section");
   const allRecipesTitleElement = document.getElementById("all-recipes-title");
 
   continueMakingSectionElement.classList.add("remove");
   favoritesSectionElement.classList.add("remove");
+  availableSectionElement.classList.add("remove");
   popularSectionElement.classList.add("remove");
   allRecipesTitleElement.classList.add("remove");
 };
@@ -407,6 +409,7 @@ const showSections = () => {
     "continue-making-section"
   );
   const favoritesSectionElement = document.getElementById("favorites-section");
+  const availableSectionElement = document.getElementById("available-section");
   const popularSectionElement = document.getElementById("popular-section");
   const allRecipesTitleElement = document.getElementById("all-recipes-title");
   const quantityElement = document.getElementById("ServingSizeQuantity");
@@ -417,6 +420,8 @@ const showSections = () => {
   if (!favoritesList) {
     favoritesSectionElement.classList.remove("remove");
   }
+  availableSectionElement.classList.remove("remove")
+  generateAvailableRecipes();
   popularSectionElement.classList.remove("remove");
   allRecipesTitleElement.classList.remove("remove");
   quantityElement.classList.add("remove");
