@@ -26,6 +26,14 @@ export const removeItem = (itemIndex) => {
   }
   localStorage.setItem("item-list", JSON.stringify(listOfItems));
 };
+export const editItem = (itemIndex, newItem) => {
+  const listOfItems = getAllItems();
+  const ingredientToEdit = listOfItems[itemIndex];
+  ingredientToEdit.name = newItem.name;
+  ingredientToEdit.quantity = newItem.quantity;
+  ingredientToEdit.units = newItem.units;
+  localStorage.setItem("item-list", JSON.stringify(listOfItems));
+};
 export const removeUsedItems = (ingredients) => {
   const listOfItems = getAllItems();
   ingredients.forEach((ingredient) => {

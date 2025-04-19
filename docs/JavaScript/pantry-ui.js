@@ -1,4 +1,4 @@
-import { getAllItems, addItem, removeItem, getItem } from "./domain.js";
+import { getAllItems, addItem, removeItem, getItem, editItem } from "./domain.js";
 
 const allowDrop = (e) => {
   e.preventDefault();
@@ -210,8 +210,7 @@ const generateItemCards = () => {
         };
         const id = itemCardElement.id;
         const index = id.slice(4);
-        removeItem(index);
-        addItem(newItem);
+        editItem(index, newItem);
         generateItemCards();
       });
     });
