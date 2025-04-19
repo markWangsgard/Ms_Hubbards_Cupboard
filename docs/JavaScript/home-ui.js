@@ -1,5 +1,6 @@
 import { baseURL } from "./constants.js";
 import {
+  getAllItems,
   GetContinueMaking,
   getFavorites,
   RemoveContinueMaking,
@@ -323,6 +324,32 @@ const generateFavoriteRecipes = async () => {
   });
 };
 
+const generateAvailableRecipes = async () => {
+  const availableRecipesSectionElement =
+    document.getElementById("available-section");
+  const availableRecipesContainerElement = document.getElementById(
+    "available-recipes-container"
+  );
+  availableRecipesContainerElement.replaceChildren();
+  const allRecipes = await getAllRecipes();
+  const availableIngredients = getAllItems().map((i) => i.name);
+
+  const availableRecipes = allRecipes.filter((r) => {
+    const ingredientsInRecipes = r.ingredients.map(i => i.name);
+    const sharedIngredients = ingredientsInRecipes.filter(i => availableIngredients.includes(i));
+    return sharedIngredients.length === ingredientsInRecipes.length;
+  });
+  if (availableRecipes.length == 0) {
+    availableRecipesSectionElement.classList.add("remove");
+  } else {
+    availableRecipesSectionElement.classList.remove("remove");
+  }
+  availableRecipes.forEach(async (recipe) => {
+    const card = await generateCard(recipe);
+    availableRecipesContainerElement.appendChild(card);
+  });
+};
+
 const generatePopularRecipes = async () => {
   const popularRecipesContainerElement = document.getElementById(
     "popular-recipes-container"
@@ -397,6 +424,7 @@ const showSections = () => {
 
 generateContinueMaking();
 generateFavoriteRecipes();
+generateAvailableRecipes();
 generatePopularRecipes();
 generateAllRecipes();
 addAllEventListeners();

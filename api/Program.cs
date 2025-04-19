@@ -18,13 +18,16 @@ string fileName = "recipes.json";
 List<Recipe> recipeDatabase = new();
 
 // Generation of random Recipes, if needed
-/*
-Ingredient ingredient=new("Shredded Cheese", 1, "Cup");
-for (int i = 0; i < 20; i++)
-{
-    Recipe newRecipe = new Recipe(i, "Hello", "Mark", "/images/pancakes.jpg", Random.Shared.Next(20), new TimeToMake(Random.Shared.Next(10), Random.Shared.Next(60)), (RecipeDifficulty)Random.Shared.Next(6), Random.Shared.Next(6), new List<Ingredient>([ingredient, ingredient, ingredient]), new List<string>(["Step 1", "Step 2", "Step 3"]));
-    recipeDatabase.Add(newRecipe);
-} */
+
+// Ingredient ingredient1=new("Cheese", 1, "Cup");
+// Ingredient ingredient2=new("Milk", 1, "Cup");
+// Ingredient ingredient3=new("Butter", 1, "Cup");
+// for (int i = 0; i < 20; i++)
+// {
+//     // Id Title Creator PhotoURL ServingSize Duration Difficulty Rating Ingredients Directions 
+//     Recipe newRecipe = new Recipe(i, "Hello", "Mark", "/photo/pancakes.jpg", Random.Shared.Next(20), new TimeToMake(Random.Shared.Next(10), Random.Shared.Next(60)), Random.Shared.Next(6), Random.Shared.Next(6), new List<Ingredient>([ingredient1, ingredient2, ingredient3]), new List<string>(["Step 1", "Step 2", "Step 3"]));
+//     recipeDatabase.Add(newRecipe);
+// } 
 if (File.Exists(fileName))
 {
     var json = File.ReadAllText(fileName);
@@ -159,6 +162,20 @@ public record struct Recipe
     public double Rating { get; set; }
     public List<Ingredient> Ingredients { get; init; }
     public List<string> Directions { get; init; }
+
+    public Recipe(int id, string title, string creator, string photoURL, int servingSize, TimeToMake duration, int difficulty, double rating, List<Ingredient> ingredients, List<string> directions)
+    {
+        Id = id;
+        Title = title;
+        Creator = creator;
+        PhotoURL = photoURL;
+        ServingSize = servingSize;
+        Duration = duration;
+        Difficulty = difficulty;
+        Rating = rating;
+        Ingredients = ingredients;
+        Directions = directions;
+    }
 }
 
 
