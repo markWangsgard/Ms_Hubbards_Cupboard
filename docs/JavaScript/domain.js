@@ -26,6 +26,20 @@ export const removeItem = (itemIndex) => {
   }
   localStorage.setItem("item-list", JSON.stringify(listOfItems));
 };
+export const removeUsedItems = (ingredients) => {
+  const listOfItems = getAllItems();
+  ingredients.forEach((ingredient) => {
+    const ingredientToEdit = listOfItems.find(item => item.name == ingredient.name);
+    if (ingredientToEdit.units == ingredient.units) {
+      ingredientToEdit.quantity -= ingredient.quantity;
+    }
+    if (ingredientToEdit.quantity <= 0) {
+      const itemIndex = listOfItems.findIndex(i => i.name == ingredientToEdit.name);
+      listOfItems.splice(itemIndex,1);
+    }
+  });
+  localStorage.setItem("item-list", JSON.stringify(listOfItems));
+}
 export const getFavorites = () => {
   return JSON.parse(localStorage.getItem("favorites"));
 };

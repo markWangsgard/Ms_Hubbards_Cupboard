@@ -5,6 +5,7 @@ import {
   GetContinueMaking,
   getFavorites,
   RemoveContinueMaking,
+  removeUsedItems,
   ToggleFavoriteRecipe,
 } from "./domain.js";
 
@@ -116,9 +117,12 @@ const setupPage = async () => {
 
 const setUpEventListeners = () => {
   const completeButton = document.getElementById("mark-complete-button");
-  completeButton.addEventListener("click", (e) => {
+  completeButton.addEventListener("click", async (e) => {
     e.preventDefault();
     RemoveContinueMaking(recipeId);
+    const recipe = await getRecipe(recipeId);
+    removeUsedItems(recipe.ingredients);
+    completeButton.classList.remove("dark-button");
     completeButton.classList.add("light-button");
   });
 
