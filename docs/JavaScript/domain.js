@@ -3,7 +3,7 @@ export const addItem = (item) => {
   const itemList = [];
   storedItems?.forEach((i) => {
     itemList.push(i);
-  })
+  });
   itemList.push(item);
 
   localStorage.setItem("item-list", JSON.stringify(itemList));
@@ -20,8 +20,10 @@ export const getItem = (itemName) => {
 export const removeItem = (itemIndex) => {
   const listOfItems = getAllItems();
 
-  if(listOfItems!==null && listOfItems.map((i) => i.id).includes(itemIndex))
-  {
+  if (
+    listOfItems !== null &&
+    listOfItems.map((i) => i.id).includes(itemIndex)
+  ) {
     listOfItems.splice(itemIndex, 1);
   }
   localStorage.setItem("item-list", JSON.stringify(listOfItems));
@@ -37,17 +39,24 @@ export const editItem = (itemIndex, newItem) => {
 export const removeUsedItems = (ingredients) => {
   const listOfItems = getAllItems();
   ingredients.forEach((ingredient) => {
-    const ingredientToEdit = listOfItems.find(item => item.name == ingredient.name);
+    const ingredientToEdit = listOfItems.find(
+      (item) => item.name == ingredient.name
+    );
+    if (ingredientToEdit == null) {
+      return;
+    }
     if (ingredientToEdit.units == ingredient.units) {
       ingredientToEdit.quantity -= ingredient.quantity;
     }
     if (ingredientToEdit.quantity <= 0) {
-      const itemIndex = listOfItems.findIndex(i => i.name == ingredientToEdit.name);
-      listOfItems.splice(itemIndex,1);
+      const itemIndex = listOfItems.findIndex(
+        (i) => i.name == ingredientToEdit.name
+      );
+      listOfItems.splice(itemIndex, 1);
     }
   });
   localStorage.setItem("item-list", JSON.stringify(listOfItems));
-}
+};
 export const getFavorites = () => {
   return JSON.parse(localStorage.getItem("favorites"));
 };
