@@ -3,6 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Oldenburg&family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Slabo+27px&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="../css/header-footer-style.css" />
     <link rel="stylesheet" href="../css/addRecipe-style.css" />
     <script type="module" src="../JavaScript/header.js"></script>
@@ -17,9 +23,15 @@
         <section>
           <article id="upload-image-container">
             <label for="image"><h2>Image:</h2></label>
-            <p class="error remove" id="error-image">Please upload an image. That way we know when we messed up.</p>
+            <p class="error remove" id="error-image">
+              Please upload an image. That way we know when we messed up.
+            </p>
             <input type="file" id="image" name="image" accept="image/*" />
-            <img id="displayPhoto" src="../images/no-photo-default.svg" alt="default image" />
+            <img
+              id="displayPhoto"
+              src="../images/no-photo-default.svg"
+              alt="default image"
+            />
           </article>
           <article id="recipe-info-container">
             <h2>Recipe Info</h2>
@@ -32,117 +44,149 @@
                 placeholder="Ms. Hubbard's Bone Soup"
               />
             </div>
-            <p class="error remove" id="error-title">Please enter a Title. How would you like it if you didn't have a name?</p>
+            <p class="error remove" id="error-title">
+              Please enter a Title. How would you like it if you didn't have a
+              name?
+            </p>
             <div>
-                <label for="creator">Creator:</label>
-                <input
+              <label for="creator">Creator:</label>
+              <input
                 type="text"
                 id="creator"
                 name="creator"
                 placeholder="Ms. Hubbard"
-                />
+              />
             </div>
-            <p class="error remove" id="error-creator">Please enter a creator. Give them some credit.</p>
+            <p class="error remove" id="error-creator">
+              Please enter a creator. Give them some credit.
+            </p>
             <div id="time-to-make-container">
-                <label for="time-to-make">Time to make:</label>
-                <div>
-                    <input
-                    type="number"
-                    id="time-to-make-hours"
-                    name="time-to-make-hours"
-                    placeholder="1"
-                    min="0"
-                    />
-                    <label for="time-to-make-hours">Hours</label>
-                </div>
-                <div>
-                    <input
-                    type="number"
-                    id="time-to-make-minutes"
-                    name="time-to-make-minutes"
-                    placeholder="30"
-                    min="0"
-                    max="59"
-                    />
-                    <label for="time-to-make-minutes">Minutes</label>
-                </div>
-                <p class="error remove" id="error-time-to-make">Please enter a time to make. I don't want to spend forever making something.</p>
+              <label for="time-to-make">Time to make:</label>
+              <div>
+                <input
+                  type="number"
+                  id="time-to-make-hours"
+                  name="time-to-make-hours"
+                  placeholder="1"
+                  min="0"
+                />
+                <label for="time-to-make-hours">Hours</label>
+              </div>
+              <div>
+                <input
+                  type="number"
+                  id="time-to-make-minutes"
+                  name="time-to-make-minutes"
+                  placeholder="30"
+                  min="0"
+                  max="59"
+                />
+                <label for="time-to-make-minutes">Minutes</label>
+              </div>
+              <p class="error remove" id="error-time-to-make">
+                Please enter a time to make. I don't want to spend forever
+                making something.
+              </p>
             </div>
             <div>
-                <label for="serving-size">Serving Size:</label>
-                <input
+              <label for="serving-size">Serving Size:</label>
+              <input
                 type="number"
                 id="serving-size"
                 name="serving-size"
                 placeholder="8"
                 min="1"
-                />
-                <p class="error remove" id="error-serving-size">Please enter a serving size. Is this for party? Or is for a lonely night all alone?</p>
+              />
+              <p class="error remove" id="error-serving-size">
+                Please enter a serving size. Is this for party? Or is for a
+                lonely night all alone?
+              </p>
             </div>
             <div>
-                <label for="difficulty">Difficulty:</label>
-                <select name="difficulty" id="difficulty">
-                    <option value="" disabled selected>Please Choose a Difficulty</option>
-                    <option value="1">Easy</option>
-                    <option value="2">Standard</option>
-                    <option value="3">Medium</option>
-                    <option value="4">Intermediate</option>
-                    <option value="5">Hard</option>
-                </select>
+              <label for="difficulty">Difficulty:</label>
+              <select name="difficulty" id="difficulty">
+                <option value="" disabled selected>
+                  Please Choose a Difficulty
+                </option>
+                <option value="1">Easy</option>
+                <option value="2">Standard</option>
+                <option value="3">Medium</option>
+                <option value="4">Intermediate</option>
+                <option value="5">Hard</option>
+              </select>
             </div>
-            <p class="error remove" id="error-difficulty">Please enter a difficulty. Old Ms. Hubbard can only do some things.</p>
-        </article>
-    </section>
-    <section>
-        <article id="ingredient-input-container">
+            <p class="error remove" id="error-difficulty">
+              Please enter a difficulty. Old Ms. Hubbard can only do some
+              things.
+            </p>
+          </article>
+        </section>
+        <section>
+          <article id="ingredient-input-container">
             <h2>Ingredients</h2>
-            <p class="error remove" id="error-ingredients">Please add some ingredients. Its kinda hard to make something out of nothing.</p>
-            <ul id="list-of-ingredients">
-            </ul>
-                <div>
-                    <label for="ingredient-quantity">Ingredient Quantity:</label>
-                    <input
-                    type="number"
-                    id="ingredient-quantity"
-                    name="ingredient-quantity"
-                    min="1"
-                    placeholder="3"
-                    />
-                </div>
-                <p class="error remove" id="error-ingredient-quantity">Please add a quantity. Kinda hard to mix in zero of something.</p>
-                <div>
-                    <label for="ingredient-unit">Ingredient Unit:</label>
-                    <select name="ingredient-unit" id="ingredient-unit">
-                        <option value="" disabled selected>Please Choose a Unit</option>
-                        <option value="Cups">Cup(s)</option>
-                        <option value="Tablespoons">Tablespoon(s)</option>
-                        <option value="Teaspoons">Teaspoon(s)</option>
-                        <option value="Pounds">Pound(s)</option>
-                        <option value="Ounces">Ounce(s)</option>
-                        <option value="Ounce-can">Ounce(s) Can</option>
-                        <option value="Count">Count (example: eggs)</option>
-                    </select>
-                </div>
-                <p class="error remove" id="error-ingredient-unit">Please choose a unit. What are we using? Cups? Gallons? Elephants?</p>
-                <div>
-                    <label for="ingredient-name">Ingredient Name:</label>
-                    <input type="text" id="ingredient-name" placeholder="Water"/>
-                </div>
-                <p class="error remove" id="error-ingredient-name">Please give the ingredient a name. I'm pretty sure there isn't an ingredient version of You-Know-Who.</p>
-                <button class="dark-button" id="add-ingredient-button">Add Ingredient</button>
+            <p class="error remove" id="error-ingredients">
+              Please add some ingredients. Its kinda hard to make something out
+              of nothing.
+            </p>
+            <ul id="list-of-ingredients"></ul>
+            <div>
+              <label for="ingredient-quantity">Ingredient Quantity:</label>
+              <input
+                type="number"
+                id="ingredient-quantity"
+                name="ingredient-quantity"
+                min="1"
+                placeholder="3"
+              />
+            </div>
+            <p class="error remove" id="error-ingredient-quantity">
+              Please add a quantity. Kinda hard to mix in zero of something.
+            </p>
+            <div>
+              <label for="ingredient-unit">Ingredient Unit:</label>
+              <select name="ingredient-unit" id="ingredient-unit">
+                <option value="" disabled selected>Please Choose a Unit</option>
+                <option value="Cups">Cup(s)</option>
+                <option value="Tablespoons">Tablespoon(s)</option>
+                <option value="Teaspoons">Teaspoon(s)</option>
+                <option value="Pounds">Pound(s)</option>
+                <option value="Ounces">Ounce(s)</option>
+                <option value="Ounce-can">Ounce(s) Can</option>
+                <option value="Count">Count (example: eggs)</option>
+              </select>
+            </div>
+            <p class="error remove" id="error-ingredient-unit">
+              Please choose a unit. What are we using? Cups? Gallons? Elephants?
+            </p>
+            <div>
+              <label for="ingredient-name">Ingredient Name:</label>
+              <input type="text" id="ingredient-name" placeholder="Water" />
+            </div>
+            <p class="error remove" id="error-ingredient-name">
+              Please give the ingredient a name. I'm pretty sure there isn't an
+              ingredient version of You-Know-Who.
+            </p>
+            <button class="dark-button" id="add-ingredient-button">
+              Add Ingredient
+            </button>
           </article>
           <article id="directions-input-container">
             <label for="directions">
               <h2>Directions:</h2>
-            <p class="error remove" id="error-directions">Please add some directions. I failed my improv class.</p>
+              <p class="error remove" id="error-directions">
+                Please add some directions. I failed my improv class.
+              </p>
             </label>
             <p>Please hit enter between each step</p>
-            <textarea name="directions" id="directions"
-            placeholder="In a large pot, add water...
-Then add the bone..."></textarea>
+            <textarea
+              name="directions"
+              id="directions"
+              placeholder="In a large pot, add water...
+Then add the bone..."
+            ></textarea>
           </article>
         </section>
-        <input type="submit" class="dark-button"/>
+        <input type="submit" class="dark-button" />
       </form>
     </main>
     <footer id="footer"></footer>

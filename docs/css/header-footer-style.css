@@ -12,6 +12,7 @@
   --error-text-color: red;
 }
 body {
+  font-family: "Slabo 27px", serif;
   margin: 0;
   background-color: var(--page-background-color);
   width: 100%;
