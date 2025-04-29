@@ -22,6 +22,7 @@ body {
   align-items: center;
 }
 button, input[type="submit"], .button {
+  font-family: inherit;
   padding: 0.5em;
   border-radius: 1em;
 }
